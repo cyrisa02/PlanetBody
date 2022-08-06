@@ -16,7 +16,8 @@ class MailingFixtures extends Fixture
 
         $mailing = new Mailing();
         $mailing->setTitle('Désactivation de votre option N°???');
-        $mailing->setContent($faker->text(15));       
+        $mailing->setContent($faker->text(15)); 
+           
         $manager->persist($mailing);
 
         $mailing = new Mailing();
