@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -42,12 +44,23 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private ?\DateTimeImmutable $created_at = null;
 
+    #[ORM\OneToOne(inversedBy: 'user', cascade: ['persist', 'remove'])]
+    private ?Maincustomer $maincustomer = null;
+
+    #[ORM\ManyToOne(inversedBy: 'users')]
+    private ?Partner $partners = null;
+
+    #[ORM\ManyToOne(inversedBy: 'users')]
+    private ?Sporthall $sporthalls = null;
+
+    
     /**
  	*This constructor is for the date
  	*/
  	public function __construct()
     {
         $this->created_at = new \DateTimeImmutable();
+       
         
     }
 
@@ -180,4 +193,42 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
         return $this;
     }
+
+    public function getMaincustomer(): ?Maincustomer
+    {
+        return $this->maincustomer;
+    }
+
+    public function setMaincustomer(?Maincustomer $maincustomer): self
+    {
+        $this->maincustomer = $maincustomer;
+
+        return $this;
+    }
+
+    public function getPartners(): ?Partner
+    {
+        return $this->partners;
+    }
+
+    public function setPartners(?Partner $partners): self
+    {
+        $this->partners = $partners;
+
+        return $this;
+    }
+
+    public function getSporthalls(): ?Sporthall
+    {
+        return $this->sporthalls;
+    }
+
+    public function setSporthalls(?Sporthall $sporthalls): self
+    {
+        $this->sporthalls = $sporthalls;
+
+        return $this;
+    }
+
+    
 }
