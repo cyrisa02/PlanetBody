@@ -16,12 +16,12 @@ class PermissionController extends AbstractController
     #[Route('/', name: 'app_permission_index', methods: ['GET'])]
     public function index(PermissionRepository $permissionRepository): Response
     {
-        return $this->render('permission/index.html.twig', [
+        return $this->render('pages/permission/index.html.twig', [
             'permissions' => $permissionRepository->findAll(),
         ]);
     }
 
-    #[Route('/new', name: 'app_permission_new', methods: ['GET', 'POST'])]
+    #[Route('/creation', name: 'app_permission_new', methods: ['GET', 'POST'])]
     public function new(Request $request, PermissionRepository $permissionRepository): Response
     {
         $permission = new Permission();
@@ -43,12 +43,12 @@ class PermissionController extends AbstractController
     #[Route('/{id}', name: 'app_permission_show', methods: ['GET'])]
     public function show(Permission $permission): Response
     {
-        return $this->render('permission/show.html.twig', [
+        return $this->render('pages/permission/show.html.twig', [
             'permission' => $permission,
         ]);
     }
 
-    #[Route('/{id}/edit', name: 'app_permission_edit', methods: ['GET', 'POST'])]
+    #[Route('/{id}/edition', name: 'app_permission_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Permission $permission, PermissionRepository $permissionRepository): Response
     {
         $form = $this->createForm(PermissionType::class, $permission);
@@ -60,7 +60,7 @@ class PermissionController extends AbstractController
             return $this->redirectToRoute('app_permission_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('permission/edit.html.twig', [
+        return $this->renderForm('pages/permission/edit.html.twig', [
             'permission' => $permission,
             'form' => $form,
         ]);

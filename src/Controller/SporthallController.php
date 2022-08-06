@@ -10,18 +10,18 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-#[Route('/sporthall')]
+#[Route('/structure')]
 class SporthallController extends AbstractController
 {
     #[Route('/', name: 'app_sporthall_index', methods: ['GET'])]
     public function index(SporthallRepository $sporthallRepository): Response
     {
-        return $this->render('sporthall/index.html.twig', [
+        return $this->render('pages/sporthall/index.html.twig', [
             'sporthalls' => $sporthallRepository->findAll(),
         ]);
     }
 
-    #[Route('/new', name: 'app_sporthall_new', methods: ['GET', 'POST'])]
+    #[Route('/creation', name: 'app_sporthall_new', methods: ['GET', 'POST'])]
     public function new(Request $request, SporthallRepository $sporthallRepository): Response
     {
         $sporthall = new Sporthall();
@@ -34,7 +34,7 @@ class SporthallController extends AbstractController
             return $this->redirectToRoute('app_sporthall_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('sporthall/new.html.twig', [
+        return $this->renderForm('pages/sporthall/new.html.twig', [
             'sporthall' => $sporthall,
             'form' => $form,
         ]);
@@ -43,12 +43,12 @@ class SporthallController extends AbstractController
     #[Route('/{id}', name: 'app_sporthall_show', methods: ['GET'])]
     public function show(Sporthall $sporthall): Response
     {
-        return $this->render('sporthall/show.html.twig', [
+        return $this->render('pages/sporthall/show.html.twig', [
             'sporthall' => $sporthall,
         ]);
     }
 
-    #[Route('/{id}/edit', name: 'app_sporthall_edit', methods: ['GET', 'POST'])]
+    #[Route('/{id}/edition', name: 'app_sporthall_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Sporthall $sporthall, SporthallRepository $sporthallRepository): Response
     {
         $form = $this->createForm(SporthallType::class, $sporthall);
@@ -60,7 +60,7 @@ class SporthallController extends AbstractController
             return $this->redirectToRoute('app_sporthall_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('sporthall/edit.html.twig', [
+        return $this->renderForm('pages/sporthall/edit.html.twig', [
             'sporthall' => $sporthall,
             'form' => $form,
         ]);

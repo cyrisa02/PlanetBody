@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Sporthall
+{% endblock %}
+
+{% block body %}
+	<h1>Sporthall</h1>
+
+	<table class="table">
+		<tbody>
+			<tr>
+				<th>Id</th>
+				<td>{{ sporthall.id }}</td>
+			</tr>
+			<tr>
+				<th>Contact</th>
+				<td>{{ sporthall.contact }}</td>
+			</tr>
+			<tr>
+				<th>IsEnable</th>
+				<td>{{ sporthall.isEnable ? 'Yes' : 'No' }}</td>
+			</tr>
+		</tbody>
+	</table>
+
+	<a href="{{ path('app_sporthall_index') }}">back to list</a>
+
+	<a href="{{ path('app_sporthall_edit', {'id': sporthall.id}) }}">edit</a>
+
+	{{ include('pages/sporthall/_delete_form.html.twig') }}
+{% endblock %}

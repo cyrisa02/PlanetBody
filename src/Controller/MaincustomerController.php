@@ -10,18 +10,18 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-#[Route('/maincustomer')]
+#[Route('/client')]
 class MaincustomerController extends AbstractController
 {
     #[Route('/', name: 'app_maincustomer_index', methods: ['GET'])]
     public function index(MaincustomerRepository $maincustomerRepository): Response
     {
-        return $this->render('maincustomer/index.html.twig', [
+        return $this->render('pages/maincustomer/index.html.twig', [
             'maincustomers' => $maincustomerRepository->findAll(),
         ]);
     }
 
-    #[Route('/new', name: 'app_maincustomer_new', methods: ['GET', 'POST'])]
+    #[Route('/creation', name: 'app_maincustomer_new', methods: ['GET', 'POST'])]
     public function new(Request $request, MaincustomerRepository $maincustomerRepository): Response
     {
         $maincustomer = new Maincustomer();
@@ -34,7 +34,7 @@ class MaincustomerController extends AbstractController
             return $this->redirectToRoute('app_maincustomer_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('maincustomer/new.html.twig', [
+        return $this->renderForm('pages/maincustomer/new.html.twig', [
             'maincustomer' => $maincustomer,
             'form' => $form,
         ]);
@@ -43,12 +43,12 @@ class MaincustomerController extends AbstractController
     #[Route('/{id}', name: 'app_maincustomer_show', methods: ['GET'])]
     public function show(Maincustomer $maincustomer): Response
     {
-        return $this->render('maincustomer/show.html.twig', [
+        return $this->render('pages/maincustomer/show.html.twig', [
             'maincustomer' => $maincustomer,
         ]);
     }
 
-    #[Route('/{id}/edit', name: 'app_maincustomer_edit', methods: ['GET', 'POST'])]
+    #[Route('/{id}/edition', name: 'app_maincustomer_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Maincustomer $maincustomer, MaincustomerRepository $maincustomerRepository): Response
     {
         $form = $this->createForm(MaincustomerType::class, $maincustomer);
@@ -60,7 +60,7 @@ class MaincustomerController extends AbstractController
             return $this->redirectToRoute('app_maincustomer_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('maincustomer/edit.html.twig', [
+        return $this->renderForm('pages/maincustomer/edit.html.twig', [
             'maincustomer' => $maincustomer,
             'form' => $form,
         ]);

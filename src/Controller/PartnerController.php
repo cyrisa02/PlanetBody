@@ -10,18 +10,18 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-#[Route('/partner')]
+#[Route('/franchise')]
 class PartnerController extends AbstractController
 {
     #[Route('/', name: 'app_partner_index', methods: ['GET'])]
     public function index(PartnerRepository $partnerRepository): Response
     {
-        return $this->render('partner/index.html.twig', [
+        return $this->render('pages/partner/index.html.twig', [
             'partners' => $partnerRepository->findAll(),
         ]);
     }
 
-    #[Route('/new', name: 'app_partner_new', methods: ['GET', 'POST'])]
+    #[Route('/creation', name: 'app_partner_new', methods: ['GET', 'POST'])]
     public function new(Request $request, PartnerRepository $partnerRepository): Response
     {
         $partner = new Partner();
@@ -34,7 +34,7 @@ class PartnerController extends AbstractController
             return $this->redirectToRoute('app_partner_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('partner/new.html.twig', [
+        return $this->renderForm('pages/partner/new.html.twig', [
             'partner' => $partner,
             'form' => $form,
         ]);
@@ -43,12 +43,12 @@ class PartnerController extends AbstractController
     #[Route('/{id}', name: 'app_partner_show', methods: ['GET'])]
     public function show(Partner $partner): Response
     {
-        return $this->render('partner/show.html.twig', [
+        return $this->render('pages/partner/show.html.twig', [
             'partner' => $partner,
         ]);
     }
 
-    #[Route('/{id}/edit', name: 'app_partner_edit', methods: ['GET', 'POST'])]
+    #[Route('/{id}/edition', name: 'app_partner_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Partner $partner, PartnerRepository $partnerRepository): Response
     {
         $form = $this->createForm(PartnerType::class, $partner);
@@ -60,7 +60,7 @@ class PartnerController extends AbstractController
             return $this->redirectToRoute('app_partner_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('partner/edit.html.twig', [
+        return $this->renderForm('pages/partner/edit.html.twig', [
             'partner' => $partner,
             'form' => $form,
         ]);
