@@ -27,6 +27,11 @@ class Permission
     #[ORM\ManyToMany(targetEntity: Sporthall::class, mappedBy: 'permissions')]
     private Collection $sporthalls;
 
+    public function __toString()
+     {
+       return $this->name;
+     }
+
     public function __construct()
     {
         $this->partners = new ArrayCollection();
