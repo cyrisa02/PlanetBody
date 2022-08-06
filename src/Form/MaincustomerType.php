@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Maincustomer;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -15,6 +16,12 @@ class MaincustomerType extends AbstractType
             ->add('contact')
             ->add('user')
             ->add('partners')
+            ->add('submit', SubmitType::class, [
+                'attr'=>[
+                    'class'=> 'btn btn-primary mt-4'
+                ],
+                'label'=> ''
+            ])
         ;
     }
 

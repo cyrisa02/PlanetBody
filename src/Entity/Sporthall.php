@@ -40,7 +40,10 @@ class Sporthall
         $this->permissions = new ArrayCollection();
         $this->mailings = new ArrayCollection();
     }
-
+public function __toString()
+     {
+       return $this->contact;
+     }
     public function getId(): ?int
     {
         return $this->id;
