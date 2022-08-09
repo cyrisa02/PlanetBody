@@ -4,20 +4,30 @@
 {% endblock %}
 
 {% block body %}
-	<div class="jumbotron">
-		<h1 class="display-4">PlanetBody</h1>
-		<p class="lead">Afin de proursuivre son développement, PlanetBody est à la recherche des nouveaux talents.</p>
+	<div class="container mt-4">
+		<div class="jumbotron">
+			<h1 class="display-4">PlanetBody
+			</h1>
+			<img src="{{ asset('assets/images/logopb.png')}}" alt="logo" style="max-width: 35rem;" class="mx-auto d-block">
 
-		<hr class="my-4">
-		<p>Vous voulez gérer votre compte adhérent PlanetBody:</p>
+			<p class="lead mt-4">Afin de proursuivre son développement, PlanetBody est à la recherche des nouveaux talents.</p>
 
-		<a class="btn btn-primary btn-lg" href="{{ path('app_login')}}" role="button">Cliquez ici!</a>
+			<hr class="my-4">
+
+			<img src="{{ asset('assets/images/room.jpg')}}" alt="logo" style="max-width: 35rem;" class="mx-auto d-block">
 
 
-		<hr class="my-4">
-		<p>Vous voulez rejoindre notre équipe et devenir membre PlanetBody pour profiter de l'ensemble de nos prestations. Vous bénéfierez de tous les avantages de nos franchisés:</p>
+			<p class="mt-4">Vous voulez gérer votre compte adhérent PlanetBody:</p>
 
-		<a class="btn btn-primary btn-lg" href="{{ path('app_contact')}}" role="button">Ouvrir un club sous franchise</a>
+			<a class="btn btn-primary btn-lg" href="{{ path('app_login')}}" role="button">Cliquez ici!</a>
 
+
+			<hr class="my-4">
+			<p>Vous voulez rejoindre notre équipe et devenir membre PlanetBody pour profiter de l'ensemble de nos prestations. Vous bénéfierez de tous les avantages de nos franchisés:</p>
+
+			<a class="btn btn-primary btn-lg" href="{{ path('app_contact')}}" role="button">Ouvrir un club sous franchise</a>
+
+		</div>
 	</div>
+
 {% endblock %}
