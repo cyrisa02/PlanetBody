@@ -49,10 +49,19 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToOne(inversedBy: 'user', cascade: ['persist', 'remove'])]
     private ?Maincustomer $maincustomer = null;
 
-    #[ORM\ManyToOne(inversedBy: 'users')]
+    
+
+    
+    #[ORM\OneToMany(mappedBy: 'users', targetEntity: Sentmail::class)]
+    private Collection $sentmails;
+
+    #[ORM\Column(length: 190, nullable: true)]
+    private ?string $contact = null;
+
+    #[ORM\OneToOne(inversedBy: 'user', cascade: ['persist', 'remove'])]
     private ?Partner $partners = null;
 
-    #[ORM\ManyToOne(inversedBy: 'users')]
+    #[ORM\OneToOne(inversedBy: 'user', cascade: ['persist', 'remove'])]
     private ?Sporthall $sporthalls = null;
 
     
@@ -62,6 +71,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
  	public function __construct()
     {
         $this->created_at = new \DateTimeImmutable();
+        $this->sentmails = new ArrayCollection();
        
         
     }
@@ -209,6 +219,52 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setMaincustomer(?Maincustomer $maincustomer): self
     {
         $this->maincustomer = $maincustomer;
+
+        return $this;
+    }
+
+    
+
+    
+
+    /**
+     * @return Collection<int, Sentmail>
+     */
+    public function getSentmails(): Collection
+    {
+        return $this->sentmails;
+    }
+
+    public function addSentmail(Sentmail $sentmail): self
+    {
+        if (!$this->sentmails->contains($sentmail)) {
+            $this->sentmails->add($sentmail);
+            $sentmail->setUsers($this);
+        }
+
+        return $this;
+    }
+
+    public function removeSentmail(Sentmail $sentmail): self
+    {
+        if ($this->sentmails->removeElement($sentmail)) {
+            // set the owning side to null (unless already changed)
+            if ($sentmail->getUsers() === $this) {
+                $sentmail->setUsers(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getContact(): ?string
+    {
+        return $this->contact;
+    }
+
+    public function setContact(?string $contact): self
+    {
+        $this->contact = $contact;
 
         return $this;
     }

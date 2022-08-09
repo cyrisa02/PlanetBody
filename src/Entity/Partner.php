@@ -15,8 +15,7 @@ class Partner
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 190)]
-    private ?string $contact = null;
+    
 
     #[ORM\Column(length: 190)]
     private ?string $contract = null;
@@ -24,12 +23,8 @@ class Partner
     #[ORM\Column]
     private ?bool $is_enable = null;
 
-    #[ORM\OneToMany(mappedBy: 'partners', targetEntity: User::class)]
-    private Collection $users;
-
-    #[ORM\OneToMany(mappedBy: 'partners', targetEntity: Maincustomer::class)]
-    private Collection $maincustomers;
-
+    
+    
     #[ORM\ManyToOne(inversedBy: 'partners')]
     private ?Sporthall $sporthalls = null;
 
@@ -39,15 +34,21 @@ class Partner
     #[ORM\ManyToMany(targetEntity: Mailing::class, inversedBy: 'partners')]
     private Collection $mailings;
 
+    #[ORM\OneToOne(mappedBy: 'partners', cascade: ['persist', 'remove'])]
+    private ?User $user = null;
+
     
     public function __construct()
     {
-        $this->users = new ArrayCollection();
-        $this->maincustomers = new ArrayCollection();
+        
+        
         $this->permissions = new ArrayCollection();
         $this->mailings = new ArrayCollection();
     }
-
+public function __toString()
+     {
+       return $this->contract;
+     }
     
 
     public function getId(): ?int
@@ -55,17 +56,7 @@ class Partner
         return $this->id;
     }
 
-    public function getContact(): ?string
-    {
-        return $this->contact;
-    }
-
-    public function setContact(string $contact): self
-    {
-        $this->contact = $contact;
-
-        return $this;
-    }
+   
 
     public function getContract(): ?string
     {
@@ -90,66 +81,7 @@ class Partner
 
         return $this;
     }
-
-    /**
-     * @return Collection<int, User>
-     */
-    public function getUsers(): Collection
-    {
-        return $this->users;
-    }
-
-    public function addUser(User $user): self
-    {
-        if (!$this->users->contains($user)) {
-            $this->users->add($user);
-            $user->setPartners($this);
-        }
-
-        return $this;
-    }
-
-    public function removeUser(User $user): self
-    {
-        if ($this->users->removeElement($user)) {
-            // set the owning side to null (unless already changed)
-            if ($user->getPartners() === $this) {
-                $user->setPartners(null);
-            }
-        }
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, Maincustomer>
-     */
-    public function getMaincustomers(): Collection
-    {
-        return $this->maincustomers;
-    }
-
-    public function addMaincustomer(Maincustomer $maincustomer): self
-    {
-        if (!$this->maincustomers->contains($maincustomer)) {
-            $this->maincustomers->add($maincustomer);
-            $maincustomer->setPartners($this);
-        }
-
-        return $this;
-    }
-
-    public function removeMaincustomer(Maincustomer $maincustomer): self
-    {
-        if ($this->maincustomers->removeElement($maincustomer)) {
-            // set the owning side to null (unless already changed)
-            if ($maincustomer->getPartners() === $this) {
-                $maincustomer->setPartners(null);
-            }
-        }
-
-        return $this;
-    }
+   
 
     public function getSporthalls(): ?Sporthall
     {
@@ -207,6 +139,28 @@ class Partner
     public function removeMailing(Mailing $mailing): self
     {
         $this->mailings->removeElement($mailing);
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        // unset the owning side of the relation if necessary
+        if ($user === null && $this->user !== null) {
+            $this->user->setPartners(null);
+        }
+
+        // set the owning side of the relation if necessary
+        if ($user !== null && $user->getPartners() !== $this) {
+            $user->setPartners($this);
+        }
+
+        $this->user = $user;
 
         return $this;
     }

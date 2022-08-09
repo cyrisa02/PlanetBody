@@ -1,10 +1,11 @@
 <?php
 
 namespace App\Controller;
-
+use App\Entity\User;
 use App\Entity\Partner;
 use App\Form\PartnerType;
 use App\Repository\PartnerRepository;
+use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -14,10 +15,11 @@ use Symfony\Component\Routing\Annotation\Route;
 class PartnerController extends AbstractController
 {
     #[Route('/', name: 'app_partner_index', methods: ['GET'])]
-    public function index(PartnerRepository $partnerRepository): Response
+    public function index(PartnerRepository $partnerRepository, UserRepository $userRepository): Response
     {
         return $this->render('pages/partner/index.html.twig', [
             'partners' => $partnerRepository->findAll(),
+            'users' => $userRepository->findAll(),
         ]);
     }
 

@@ -15,36 +15,22 @@ class Maincustomer
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 190)]
-    private ?string $contact = null;
+    
 
     #[ORM\OneToOne(mappedBy: 'maincustomer', cascade: ['persist', 'remove'])]
     private ?User $user = null;
 
-    #[ORM\ManyToOne(inversedBy: 'maincustomers')]
-    private ?Partner $partners = null;
-
-    
-
-    
-    
+        public function __toString()
+     {
+       return $this->id;
+     }
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getContact(): ?string
-    {
-        return $this->contact;
-    }
-
-    public function setContact(string $contact): self
-    {
-        $this->contact = $contact;
-
-        return $this;
-    }
+    
 
     public function getUser(): ?User
     {
@@ -68,17 +54,7 @@ class Maincustomer
         return $this;
     }
 
-    public function getPartners(): ?Partner
-    {
-        return $this->partners;
-    }
-
-    public function setPartners(?Partner $partners): self
-    {
-        $this->partners = $partners;
-
-        return $this;
-    }
+    
 
     
     

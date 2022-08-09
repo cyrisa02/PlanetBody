@@ -2,29 +2,28 @@
 
 namespace App\Form;
 
-use App\Entity\Partner;
+use App\Entity\Mailing;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class PartnerType extends AbstractType
+class MailingType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            //->add('contact')
-            //->add('contract')
-            ->add('is_enable')
-            //->add('sporthalls')
-            //->add('permissions')
-            //->add('mailings')
+            ->add('title')
+            ->add('content')
+            ->add('categories')
+            ->add('sporthalls')
+            ->add('partners')
         ;
     }
 
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'data_class' => Partner::class,
+            'data_class' => Mailing::class,
         ]);
     }
 }

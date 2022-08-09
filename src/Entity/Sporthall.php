@@ -13,16 +13,18 @@ class Sporthall
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
-    private ?int $id = null;
-
-    #[ORM\Column(length: 190)]
-    private ?string $contact = null;
+    private ?int $id = null;    
 
     #[ORM\Column]
     private ?bool $isEnable = null;
 
-    #[ORM\OneToMany(mappedBy: 'sporthalls', targetEntity: User::class)]
-    private Collection $users;
+    public function __toString()
+     {
+       return $this->isEnable;
+     }
+
+
+    
 
     #[ORM\OneToMany(mappedBy: 'sporthalls', targetEntity: Partner::class)]
     private Collection $partners;
@@ -33,33 +35,23 @@ class Sporthall
     #[ORM\ManyToMany(targetEntity: Mailing::class, inversedBy: 'sporthalls')]
     private Collection $mailings;
 
+    #[ORM\OneToOne(mappedBy: 'sporthalls', cascade: ['persist', 'remove'])]
+    private ?User $user = null;
+
     public function __construct()
     {
-        $this->users = new ArrayCollection();
+        
         $this->partners = new ArrayCollection();
         $this->permissions = new ArrayCollection();
         $this->mailings = new ArrayCollection();
     }
-public function __toString()
-     {
-       return $this->contact;
-     }
+
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getContact(): ?string
-    {
-        return $this->contact;
-    }
-
-    public function setContact(string $contact): self
-    {
-        $this->contact = $contact;
-
-        return $this;
-    }
+    
 
     public function isIsEnable(): ?bool
     {
@@ -73,36 +65,11 @@ public function __toString()
         return $this;
     }
 
-    /**
-     * @return Collection<int, User>
-     */
-    public function getUsers(): Collection
-    {
-        return $this->users;
-    }
+    
 
-    public function addUser(User $user): self
-    {
-        if (!$this->users->contains($user)) {
-            $this->users->add($user);
-            $user->setSporthalls($this);
-        }
+    
 
-        return $this;
-    }
-
-    public function removeUser(User $user): self
-    {
-        if ($this->users->removeElement($user)) {
-            // set the owning side to null (unless already changed)
-            if ($user->getSporthalls() === $this) {
-                $user->setSporthalls(null);
-            }
-        }
-
-        return $this;
-    }
-
+    
     /**
      * @return Collection<int, Partner>
      */
@@ -177,6 +144,28 @@ public function __toString()
     public function removeMailing(Mailing $mailing): self
     {
         $this->mailings->removeElement($mailing);
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        // unset the owning side of the relation if necessary
+        if ($user === null && $this->user !== null) {
+            $this->user->setSporthalls(null);
+        }
+
+        // set the owning side of the relation if necessary
+        if ($user !== null && $user->getSporthalls() !== $this) {
+            $user->setSporthalls($this);
+        }
+
+        $this->user = $user;
 
         return $this;
     }

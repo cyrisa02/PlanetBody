@@ -1,10 +1,11 @@
 <?php
 
 namespace App\Controller;
-
+use App\Entity\User;
 use App\Entity\Sporthall;
 use App\Form\SporthallType;
 use App\Repository\SporthallRepository;
+use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -14,10 +15,11 @@ use Symfony\Component\Routing\Annotation\Route;
 class SporthallController extends AbstractController
 {
     #[Route('/', name: 'app_sporthall_index', methods: ['GET'])]
-    public function index(SporthallRepository $sporthallRepository): Response
+    public function index(SporthallRepository $sporthallRepository, UserRepository $userRepository): Response
     {
         return $this->render('pages/sporthall/index.html.twig', [
             'sporthalls' => $sporthallRepository->findAll(),
+            'users' => $userRepository->findAll(),
         ]);
     }
 

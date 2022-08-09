@@ -32,11 +32,20 @@ class Mailing
     #[ORM\ManyToMany(targetEntity: Partner::class, mappedBy: 'mailings')]
     private Collection $partners;
 
+    #[ORM\OneToMany(mappedBy: 'mailings', targetEntity: Sentmail::class)]
+    private Collection $sentmails;
+
     public function __construct()
     {
         $this->sporthalls = new ArrayCollection();
         $this->partners = new ArrayCollection();
+        $this->sentmails = new ArrayCollection();
     }
+
+    public function __toString()
+     {
+       return $this->title;
+     }
 
     public function getId(): ?int
     {
@@ -128,6 +137,36 @@ class Mailing
     {
         if ($this->partners->removeElement($partner)) {
             $partner->removeMailing($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Sentmail>
+     */
+    public function getSentmails(): Collection
+    {
+        return $this->sentmails;
+    }
+
+    public function addSentmail(Sentmail $sentmail): self
+    {
+        if (!$this->sentmails->contains($sentmail)) {
+            $this->sentmails->add($sentmail);
+            $sentmail->setMailings($this);
+        }
+
+        return $this;
+    }
+
+    public function removeSentmail(Sentmail $sentmail): self
+    {
+        if ($this->sentmails->removeElement($sentmail)) {
+            // set the owning side to null (unless already changed)
+            if ($sentmail->getMailings() === $this) {
+                $sentmail->setMailings(null);
+            }
         }
 
         return $this;

@@ -12,10 +12,10 @@ class SporthallType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('contact')
+            //->add('contact')
             ->add('isEnable')
-            ->add('permissions')
-            ->add('mailings')
+            //->add('permissions')
+            //->add('mailings')
         ;
     }
 

@@ -5,13 +5,14 @@ namespace App\Form;
 use App\Entity\User;
 use App\Entity\Partner;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
-use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Validator\Constraints\IsTrue;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
+use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 
 class RegistrationFormTypePartner extends AbstractType
 {
@@ -23,7 +24,18 @@ class RegistrationFormTypePartner extends AbstractType
             ->add('address')
             ->add('zipcode')
             ->add('city')
-            // ->add('contact')
+            //  ->add('contact', EntityType::class, [
+            //     'class' => Partner::class,
+            //     'choice_label'=>function($contact){
+            //     return $contact->getContact();
+            // },
+            // 'label' => 'Merci de choisir votre contact ',
+            //     'attr' => [
+            //         'class' => 'form-control '
+            //     ],
+            //     'placeholder'=>'Choisissez votre annonce dans la liste',
+
+            // ])
             // ->add('contract')
             ->add('agreeTerms', CheckboxType::class, [
                 'mapped' => false,

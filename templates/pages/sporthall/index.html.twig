@@ -1,37 +1,43 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Sporthall index{% endblock %}
+{% block title %}Sporthall index
+{% endblock %}
 
 {% block body %}
-    <h1>Sporthall index</h1>
+	<h1>Sporthall index</h1>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Contact</th>
-                <th>IsEnable</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for sporthall in sporthalls %}
-            <tr>
-                <td>{{ sporthall.id }}</td>
-                <td>{{ sporthall.contact }}</td>
-                <td>{{ sporthall.isEnable ? 'Yes' : 'No' }}</td>
-                <td>
-                    <a href="{{ path('app_sporthall_show', {'id': sporthall.id}) }}">show</a>
-                    <a href="{{ path('app_sporthall_edit', {'id': sporthall.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="4">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Id</th>
+				<th>Société</th>
+				<th>Ville</th>
+				<th>Contact</th>
+				<th>Statut</th>
+				<th>Actions</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for sporthall in sporthalls %}
+				<tr>
+					<td>{{ sporthall.id }}</td>
+					<td>{{ sporthall.user.name }}</td>
+					<td>{{ sporthall.user.city }}</td>
+					<td>{{ sporthall.user.contact }}</td>
 
-    <a href="{{ path('app_sporthall_new') }}">Create new</a>
+					<td>{{ sporthall.isEnable ? 'Activé' : 'Désactivé' }}</td>
+					<td>
+						{# <a href="{{ path('app_sporthall_show', {'id': sporthall.id}) }}">show</a> #}
+						<a href="{{ path('app_sporthall_edit', {'id': sporthall.id}) }}">Activer/Désactiver</a>
+					</td>
+				</tr>
+			{% else %}
+				<tr>
+					<td colspan="4">no records found</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+
+	<a href="{{ path('app_sporthall_new') }}">Create new</a>
 {% endblock %}

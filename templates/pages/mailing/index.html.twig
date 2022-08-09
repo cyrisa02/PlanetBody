@@ -1,0 +1,67 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mailing index
+{% endblock %}
+
+{% block body %}
+	{# {% for message in app.flashes('message') %}
+																<div>{{ message }}</div>
+														
+															{% endfor %} #}
+
+	{% for message in app.flashes('success') %}
+		<div class="alert alert-success mt-4">
+			{{ message }}
+		</div>
+	{% endfor %}
+
+	{% for message in app.flashes('danger') %}
+		<div class="alert alert-success mt-4">
+			{{ message }}
+		</div>
+	{% endfor %}
+
+
+	<h1>Mailing index
+	</h1>
+	<h2>partner contact ne fonctionne pas , basculer avec la nouvelle relation user?</h2>
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Id</th>
+				<th>Title</th>
+				{# <th>Destinataire</th> #}
+				<th>Content</th>
+				<th>Catégories</th>
+				<th>actions</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for mailing in mailings %}
+				{# {% for partner in partners %} #}
+
+				<tr>
+					<td>{{ mailing.id }}</td>
+					<td>{{ mailing.title }}</td>
+					{# <td>{{ partner.contact }}</td> #}
+
+					<td>{{ mailing.content }}</td>
+					<td>{{ mailing.categories.name }}</td>
+
+					<td>
+						<a href="{{ path('app_mailing_show', {'id': mailing.id}) }}">show</a>
+						<a href="{{ path('app_mailing_edit', {'id': mailing.id}) }}">edit</a>
+					</td>
+				</tr>
+				{# {% endfor %} #}
+
+			{% else %}
+				<tr>
+					<td colspan="4">no records found</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+
+	<a href="{{ path('app_mailing_new') }}">Create new</a>
+{% endblock %}

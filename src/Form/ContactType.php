@@ -47,7 +47,7 @@ class ContactType extends AbstractType
                     'minlenght' => '2',
                     'maxlenght' => '190',
                 ],
-                'label' => 'Sujet',
+                'label' => 'Nom de votre société',
                 'label_attr' => [
                     'class' => 'form-label  mt-4'
                 ],
@@ -58,7 +58,7 @@ class ContactType extends AbstractType
                 'attr' => [
                     'class' => 'form-control',
                 ],
-                'label' => 'Description',
+                'label' => 'Description de votre demande de franchise',
                 'label_attr' => [
                     'class' => 'form-label mt-4'
                 ],
