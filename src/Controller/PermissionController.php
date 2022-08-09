@@ -34,7 +34,7 @@ class PermissionController extends AbstractController
             return $this->redirectToRoute('app_permission_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('permission/new.html.twig', [
+        return $this->renderForm('pages/permission/new.html.twig', [
             'permission' => $permission,
             'form' => $form,
         ]);

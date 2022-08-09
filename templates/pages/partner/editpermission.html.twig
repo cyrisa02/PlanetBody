@@ -1,20 +1,21 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Activation du  Statut
+{% block title %}Activation du Statut
 {% endblock %}
 
 {% block body %}
 	<div class="container mt-4">
-		<h1>Désactiver / Activer un compte Franchisé</h1>
-		<h2>Nom du franchisé:{{ partner.user.name }}
+		<h1>Liste des permissions pour le franchisé
+			{{ partner.user.name }}
+			N°
 
-		</h2>
-		<h3>N°:{{ partner.id }}</h3>
+			{{ partner.id }}
+		</h1>
 
 
 		{{ include('pages/partner/_form.html.twig', {'button_label': 'Enregistrer'}) }}
 
-		<a class="btn btn-secondary btn-lg mt-4" href="{{ path('app_partner_index') }}">Retour à la liste</a>
+		<a class="btn btn-secondary btn-lg mt-4" href="{{ path('app_partnerpermission_index') }}">Retour à la liste</a>
 
 
 		<h1>ENvoyer un email</h1>

@@ -6,6 +6,7 @@ use App\Entity\Sporthall;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 
 class SporthallType extends AbstractType
 {
@@ -13,7 +14,17 @@ class SporthallType extends AbstractType
     {
         $builder
             //->add('contact')
-            ->add('isEnable')
+            ->add('isEnable', CheckboxType::class, [
+                'attr' => [
+                    'class' => 'form-check-input',
+                ],
+                'required' => false,
+                'label' => 'Actif     ?    .',
+                'label_attr' => [
+                    'class' => 'form-check-label'
+                ]
+                
+            ])
             //->add('permissions')
             //->add('mailings')
         ;

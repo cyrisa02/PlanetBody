@@ -1,37 +1,42 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Permission index{% endblock %}
+{% block title %}Liste des permissions
+{% endblock %}
 
 {% block body %}
-    <h1>Permission index</h1>
+	<div class="container mt-4">
+		<h1>Liste des Permissions existantes</h1>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>IsEnable</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for permission in permissions %}
-            <tr>
-                <td>{{ permission.id }}</td>
-                <td>{{ permission.name }}</td>
-                <td>{{ permission.isEnable ? 'Yes' : 'No' }}</td>
-                <td>
-                    <a href="{{ path('app_permission_show', {'id': permission.id}) }}">show</a>
-                    <a href="{{ path('app_permission_edit', {'id': permission.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="4">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+		<table class="table">
+			<thead>
+				<tr>
+					<th>Id</th>
+					<th>Dénomination</th>
+					<th>Statut</th>
+					<th>Actions</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for permission in permissions %}
+					<tr>
+						<td>{{ permission.id }}</td>
+						<td>{{ permission.name }}</td>
+						<td>{{ permission.isEnable ? 'Active' : 'Désactivée' }}</td>
+						<td>
+							{# <a href="{{ path('app_permission_show', {'id': permission.id}) }}">Voir</a> #}
+							<a href="{{ path('app_permission_edit', {'id': permission.id}) }}">Activer/Désactiver</a>
+						</td>
+					</tr>
+				{% else %}
+					<tr>
+						<td colspan="4">no records found</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
 
-    <a href="{{ path('app_permission_new') }}">Create new</a>
+		<a class="btn btn-primary btn-lg mt-4" href="{{ path('app_permission_new') }}">Créer une nouvelle option</a>
+
+	</div>
+
 {% endblock %}

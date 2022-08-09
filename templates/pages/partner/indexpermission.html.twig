@@ -15,24 +15,34 @@
 					<th>Ville</th>
 					<th>Contact</th>
 					<th>Contrat</th>
-					<th>Statut</th>
-					<th>Actions</th>
+					<th>Options</th>
+					<th>Gestion Options</th>
+					<th>Statut du Franchisé</th>
+					<th>Actions Franchisé</th>
 				</tr>
 			</thead>
 			<tbody>
-
-
 				{% for partner in partners %}
-
-
 					<tr>
-
-
 						<td>{{ partner.id }}</td>
 						<td>{{ partner.user.name }}</td>
 						<td>{{ partner.user.city }}</td>
 						<td>{{ partner.user.contact }}</td>
 						<td>{{ partner.contract }}</td>
+						<td>
+							{% for permission in partner.permissions %}
+
+								{{ permission.name }}
+								/
+
+							{% endfor %}
+						</td>
+						<td>
+
+							<a href="{{ path('app_partnerpermission_edit', {'id': partner.id}) }}">Activer/Désactiver</a>
+						</td>
+
+
 						<td>{{ partner.isEnable ? 'Actif' : 'Désactivé' }}</td>
 						<td>
 							{# <a href="{{ path('app_partner_show', {'id': partner.id}) }}">show</a> #}
@@ -45,7 +55,7 @@
 
 				{% else %}
 					<tr>
-						<td colspan="5">no records found</td>
+						<td colspan="5">Pas d'enregistrement</td>
 					</tr>
 				{% endfor %}
 			</tbody>

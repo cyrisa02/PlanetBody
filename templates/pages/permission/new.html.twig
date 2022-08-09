@@ -4,9 +4,13 @@
 {% endblock %}
 
 {% block body %}
-	<h1>Create new Permission</h1>
+	<div class="container mt-4">
+		<h1>Création d'une nouvelle Permission</h1>
 
-	{{ include('pages/permission/_form.html.twig') }}
+		{{ include('pages/permission/_form.html.twig') }}
 
-	<a href="{{ path('app_permission_index') }}">back to list</a>
+		<a class="btn btn-secondary btn-lg mt-4" href="{{ path('app_permission_index') }}">Retour à la liste</a>
+
+	</div>
+
 {% endblock %}

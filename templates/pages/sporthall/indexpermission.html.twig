@@ -14,8 +14,10 @@
 					<th>Société</th>
 					<th>Ville</th>
 					<th>Contact</th>
-					<th>Statut</th>
-					<th>Actions</th>
+					<th>Options</th>
+					<th>Gestion Options</th>
+					<th>Statut Structure</th>
+					<th>Actions Structure</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -25,6 +27,19 @@
 						<td>{{ sporthall.user.name }}</td>
 						<td>{{ sporthall.user.city }}</td>
 						<td>{{ sporthall.user.contact }}</td>
+						<td>
+							{% for permission in sporthall.permissions %}
+
+								{{ permission.name }}
+								/
+
+							{% endfor %}
+						</td>
+						<td>
+
+							<a href="{{ path('app_sporthallpermission_edit', {'id': sporthall.id}) }}">Activer/Désactiver</a>
+						</td>
+
 
 						<td>{{ sporthall.isEnable ? 'Activé' : 'Désactivé' }}</td>
 						<td>
@@ -34,7 +49,7 @@
 					</tr>
 				{% else %}
 					<tr>
-						<td colspan="4">no records found</td>
+						<td colspan="4">Pas d'enregistrement</td>
 					</tr>
 				{% endfor %}
 			</tbody>
