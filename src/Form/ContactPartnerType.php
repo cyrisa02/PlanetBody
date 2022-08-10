@@ -11,7 +11,7 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 
-class ContactType extends AbstractType
+class ContactPartnerType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {

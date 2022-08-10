@@ -3,7 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Contact;
-use App\Form\ContactType;
+use App\Form\ContactPartnerType;
 
 //use Symfony\Component\Mime\Email;
 use Doctrine\ORM\EntityManagerInterface;
@@ -14,14 +14,17 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
-class ContactController extends AbstractController
+
+
+
+class ContactPartnerController extends AbstractController
 {
     #[Route('/contact', name: 'app_contact')]
     public function index(Request $request,
     EntityManagerInterface $manager, MailerInterface $mailer): Response
     {
         $contact = new Contact();
-        $form = $this->createForm(ContactType::class, $contact);
+        $form = $this->createForm(ContactPartnerType::class, $contact);
 
         $form->handleRequest($request);
         if($form->isSubmitted() && $form->isValid()) {
@@ -60,7 +63,7 @@ class ContactController extends AbstractController
         return $this->redirectToRoute('app_contact');
     }
 
-    return $this->render('pages/contact/index.html.twig', [
+    return $this->render('pages/contact/indexpartner.html.twig', [
         'form'=> $form->createView(),
     ]);
     }

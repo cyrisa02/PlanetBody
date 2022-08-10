@@ -29,6 +29,9 @@ class Contact
     #[ORM\Column]
     private ?\DateTimeImmutable $createdAt = null;
 
+    #[ORM\Column]
+    private ?bool $isValid = null;
+
     public function __construct()
     {
         $this->createdAt = new \DateTimeImmutable();
@@ -95,6 +98,18 @@ class Contact
     public function setCreatedAt(\DateTimeImmutable $createdAt): self
     {
         $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    public function isIsValid(): ?bool
+    {
+        return $this->isValid;
+    }
+
+    public function setIsValid(bool $isValid): self
+    {
+        $this->isValid = $isValid;
 
         return $this;
     }
