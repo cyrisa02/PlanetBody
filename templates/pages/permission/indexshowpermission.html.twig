@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des prestations
+{% endblock %}
+
+{% block body %}
+	<div class="container mt-4">
+		<h1>Liste des prestations existantes</h1>
+
+		<h3>Voici la liste des différentes prestations que nous vous présentons. Pour connaître nos tarifs, vous pouvez nous envoyer votre demande en cliquant sur ce
+			<a href="{{ path('app_contact') }}">lien</a>.</h3>
+
+
+		<table class="table">
+			<thead>
+				<tr>
+					<th>Id</th>
+					<th>Dénomination</th>
+					<th>Statut</th>
+
+				</tr>
+			</thead>
+			<tbody>
+				{% for permission in permissions %}
+					<tr>
+						<td>{{ permission.id }}</td>
+						<td>{{ permission.name }}</td>
+						<td>{{ permission.isEnable ? 'Active' : 'Désactivée' }}</td>
+
+					</tr>
+				{% else %}
+					<tr>
+						<td colspan="4">Pas d'enregistrement</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+		<a class="btn btn-secondary btn-lg mt-4" href="{{ path('home.index') }}">Retour à l'accueil</a>
+
+
+	</div>
+
+{% endblock %}

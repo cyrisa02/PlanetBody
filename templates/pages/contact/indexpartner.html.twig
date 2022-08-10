@@ -7,19 +7,20 @@
 	<div
 		class="container">
 		{# {% for message in app.flashes('success') %}
-															<div class="alert alert-success mt-4">
-																{{ message }}
-															</div>
-														{% endfor %}
-												
-														{% for message in app.flashes('danger') %}
-															<div class="alert alert-success mt-4">
-																{{ message }}
-															</div>
-														{% endfor %} #}
+																	<div class="alert alert-success mt-4">
+																		{{ message }}
+																	</div>
+																{% endfor %}
+														
+																{% for message in app.flashes('danger') %}
+																	<div class="alert alert-success mt-4">
+																		{{ message }}
+																	</div>
+																{% endfor %} #}
 
 		<h1>Formulaire de Pré-Inscription d'un Franchisé</h1>
-		<a class="btn btn-primary btn" href="{{ path('app_permission_index')}}" role="button">Revoir nos offres, modifier la route!!!</a>
+		<a class="btn btn-primary btn" href="{{ path('app_showpermission_index')}}" role="button">Revoir nos offres, modifier la route!!!</a>
+
 
 		{{ form(form) }}
 
