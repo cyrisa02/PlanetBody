@@ -1,17 +1,18 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}User index
+{% block title %}Liste des clients
 {% endblock %}
 
 {% block body %}
-	<h1>User index</h1>
+	<h1>Liste des clients</h1>
 
 	<table class="table">
 		<thead>
 			<tr>
-				<th>Id</th>
+				<th>Id User</th>
+				<th>Id OTO</th>
 				<th>Email</th>
-				{# <th>Roles</th> #}
+				<th>Roles</th>
 				{# <th>Password</th> #}
 				<th>Name</th>
 				<th>Address</th>
@@ -27,18 +28,17 @@
 
 		<tbody>
 			{% for user in users %}
-
-
 				<tr>
 					<td>{{ user.id }}</td>
+					<td>{{ user.partners  }}</td>
 					<td>{{ user.email }}</td>
-					{# <td>{{ user.roles ? user.roles|json_encode : '' }}</td> #}
+					<td>{{ user.roles ? user.roles|json_encode : '' }}</td>
 					{# <td>{{ user.password }}</td> #}
 					<td>{{ user.name }}</td>
 					<td>{{ user.address }}</td>
 					<td>{{ user.zipcode }}</td>
 					<td>{{ user.city }}</td>
-					<td>{{ user.createdAt ? user.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+					<td>{{ user.createdAt ? user.createdAt|date('d-m-Y ') : '' }}</td>
 					<td>{{ user.contact }}</td>
 					{% for partner in user.partners %}
 						<td>{{ partner.contract }}</td>

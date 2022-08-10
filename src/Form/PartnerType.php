@@ -6,6 +6,7 @@ use App\Entity\Partner;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 
 class PartnerType extends AbstractType
@@ -14,7 +15,18 @@ class PartnerType extends AbstractType
     {
         $builder
             //->add('contact')
-            //->add('contract')
+            ->add('contract', TextType::class, [
+                'attr' => [
+                    'class' => 'form-control',
+                    'minlenght' => '2',
+                    'maxlenght' => '190',
+                ],
+                'label' => 'Type de contrat',
+                'label_attr' => [
+                    'class' => 'form-label  mt-4'
+                ],
+                
+            ])
             ->add('is_enable', CheckboxType::class, [
                 'attr' => [
                     'class' => 'form-check-input',
@@ -26,9 +38,9 @@ class PartnerType extends AbstractType
                 ]
                 
             ])
-
+//->add('users')
             //->add('sporthalls')
-            //->add('permissions')
+           // ->add('permissions')
             //->add('mailings')
         ;
     }

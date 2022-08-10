@@ -49,7 +49,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToOne(inversedBy: 'user', cascade: ['persist', 'remove'])]
     private ?Maincustomer $maincustomer = null;
 
-    
+   
 
     
     #[ORM\OneToMany(mappedBy: 'users', targetEntity: Sentmail::class)]

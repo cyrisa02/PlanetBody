@@ -87,6 +87,7 @@ class RegistrationFormTypePartner extends AbstractType
                 ],
                 
             ])
+            
             //  ->add('contact', EntityType::class, [
             //     'class' => Partner::class,
             //     'choice_label'=>function($contact){

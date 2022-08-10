@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+	</head>
+	<body>
+		<h1>Demande de M/Mme
+			{{ partner.user.contact }}</h1>
+
+		<p>Email :
+			{{ partner.user.email }}</p>
+		<p>Société :
+			{{ partner.user.name }}</p>
+		<p>Message :</p>
+		<div>
+			<p>Votre statut a changé, il est maintenant:
+				{{ partner.isEnable ? 'Actif' : 'Désactivé' }}
+				et votre contrat est:
+				{{ partner.contract }}.
+
+
+			</p>
+
+		</div>
+	</body>
+</html>
