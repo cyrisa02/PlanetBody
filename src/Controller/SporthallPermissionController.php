@@ -38,8 +38,15 @@ class SporthallPermissionController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $sporthallRepository->add($sporthall, true);
 
+            $this->addFlash(
+                'success',
+                'Votre demande a été enregistrée avec succès!'
+            );
+
             return $this->redirectToRoute('app_sporthallpermission_index', [], Response::HTTP_SEE_OTHER);
         }
+
+        
 
         return $this->renderForm('pages/sporthall/editpermission.html.twig', [
             'sporthall' => $sporthall,

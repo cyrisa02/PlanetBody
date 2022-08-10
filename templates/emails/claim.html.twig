@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+	</head>
+	<body>
+		<h1>Demande de
+			{{ claim.fullName }}</h1>
+
+		<p>Email :
+			{{ claim.email }}</p>
+		<p>Sujet :
+			{{ claim.subject }}</p>
+		<p>Message :</p>
+		<div>
+			{{ claim.message|raw }}
+		</div>
+	</body>
+</html>

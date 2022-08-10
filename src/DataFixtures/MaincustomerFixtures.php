@@ -11,7 +11,7 @@ class MaincustomerFixtures extends Fixture
     public function load(ObjectManager $manager): void
     {
         $maincustomer = new Maincustomer();
-        $maincustomer->setContact('MarketingTeam');
+       // $maincustomer->setContact('MarketingTeam');
         $manager->persist($maincustomer);
 
         $manager->flush();

@@ -37,9 +37,21 @@
 		{% block header %}
 			{% include "partials/_header.html.twig" %}
 		{% endblock %}
-		{% block body %}{% endblock %}
-		{% include "partials/_footer.html.twig" %}
+		<div class="container">
+			{% for message in app.flashes('success') %}
+				<div class="alert alert-success mt-4">
+					{{ message }}
+				</div>
+			{% endfor %}
 
+			{% for message in app.flashes('danger') %}
+				<div class="alert alert-success mt-4">
+					{{ message }}
+				</div>
+			{% endfor %}
 
+			{% block body %}{% endblock %}
+
+			{% include "partials/_footer.html.twig" %}</body>
 	</body>
 </html>

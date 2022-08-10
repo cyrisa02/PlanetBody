@@ -38,8 +38,15 @@ class PartnerPermissionController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $partnerRepository->add($partner, true);
 
+            $this->addFlash(
+                'success',
+                'Votre demande a été enregistrée avec succès!'
+            );
+
             return $this->redirectToRoute('app_partnerpermission_index', [], Response::HTTP_SEE_OTHER);
         }
+
+        
 
         return $this->renderForm('pages/partner/editpermission.html.twig', [
             'partner' => $partner,

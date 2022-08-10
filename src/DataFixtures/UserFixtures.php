@@ -20,13 +20,15 @@ class UserFixtures extends Fixture
        $admin = new User();
         $admin->setEmail('cyrisa02.test@gmail.com');
         $admin->setRoles(['ROLE_ADMIN']);
+        
         $admin->setPassword(
             $this->passwordEncoder->hashPassword($admin, 'admin')
         );
         $admin->setName('BodyPlanet');
         $admin->setAddress('2, allée des Anges');
         $admin->setZipcode('02200');
-        $admin->setCity('Soissons');  
+        $admin->setCity('Soissons');
+        $admin->setContact('Gourdon');  
         $manager->persist($admin);  
 
         $faker = Faker\Factory::create('fr_FR');
@@ -40,7 +42,8 @@ class UserFixtures extends Fixture
             $user->setName($faker->lastName);
             $user->setAddress($faker->streetAddress);
         $user->setZipcode(str_replace(' ', '', $faker->postcode));
-        $user->setCity($faker->city);  
+        $user->setCity($faker->city); 
+         $user->setContact($faker->lastName); 
         $manager->persist($user);  
     }
 
@@ -55,6 +58,7 @@ class UserFixtures extends Fixture
             $user->setAddress($faker->streetAddress);
         $user->setZipcode(str_replace(' ', '', $faker->postcode));
         $user->setCity($faker->city);  
+        $user->setContact($faker->lastName); 
         $manager->persist($user);  
     }
         $manager->flush();

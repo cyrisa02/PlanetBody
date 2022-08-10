@@ -14,7 +14,7 @@ class SporthallFixtures extends Fixture
          $faker = Faker\Factory::create('fr_FR');
         for($usr = 1; $usr <= 5; $usr++){
             $sporthall = new Sporthall();
-            $sporthall->setContact($faker->lastName);            
+            //$sporthall->setContact($faker->lastName);            
             $sporthall->setIsEnable(mt_rand(0, 1) == 1 ? true : false);
             $manager->persist($sporthall);  
         }

@@ -14,7 +14,7 @@ class PartnerFixtures extends Fixture
         $faker = Faker\Factory::create('fr_FR');
         for($usr = 1; $usr <= 5; $usr++){
             $partner = new Partner();
-            $partner->setContact($faker->lastName);
+            //$partner->setContact($faker->lastName);
             $partner->setContract($faker->lastName);
             $partner->setIsEnable(mt_rand(0, 1) == 1 ? true : false);
             $manager->persist($partner);  
