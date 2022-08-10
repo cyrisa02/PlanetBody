@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des Pré-inscriptions de Franchisés
+{% endblock %}
+
+{% block body %}
+	<h1>Liste des Pré-inscriptions de Franchisés</h1>
+
+
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Id</th>
+				<th>Contact</th>
+				<th>Mail</th>
+				<th>Société</th>
+				<th>Message</th>
+				<th>Statut</th>
+				<th>Actions</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for contact in contacts %}
+				<tr>
+					<td>{{ contact.id }}</td>
+					{# <td>{{ user.maincustomer.contact }}</td> #}
+					<td>{{ contact.fullname }}</td>
+					<td>{{ contact.email }}</td>
+					<td>{{ contact.subject }}</td>
+					<td>{{ contact.message }}</td>
+					<td>{{ contact.isValid ? 'Actif' : 'Désactivé' }}</td>
+					<td></td>
+
+
+					<td>
+						{# <a href="{{ path('app_contact_show', {'id': contact.id}) }}">show</a> #}
+						<a href="{{ path('app_contact_edit', {'id': contact.id}) }}">Activer-Désactiver</a>
+					</td>
+				</tr>
+			{% else %}
+				<tr>
+					<td colspan="3">Pas d'inscription</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+
+	{# <a href="{{ path('app_contact_new') }}">Create new</a> #}
+{% endblock %}
