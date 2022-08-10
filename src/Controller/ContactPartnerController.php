@@ -32,6 +32,7 @@ class ContactPartnerController extends AbstractController
 
             $email = (new TemplatedEmail())
         ->from($contact->getEmail())
+        
         ->to('cyrisa02.test@gmail.com')
         //addTo('ajouterunenvelleadresse@gmail.com)
         //->cc('cc@example.com')

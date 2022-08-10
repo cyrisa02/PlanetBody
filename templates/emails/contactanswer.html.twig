@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+	</head>
+	<body>
+		<h1>Demande de
+			{{ contact.fullName }}</h1>
+
+		<p>Email :
+			{{ contact.email }}</p>
+		<p>Société :
+			{{ contact.subject }}</p>
+		<p>Message :</p>
+		<div>
+			<p>Suite à votre demande d'inscription, nous vous informons du nouveau statut de votre franchise:
+				{{ contact.isValid ? 'Actif' : 'Désactivé' }}
+			</p>
+
+			{% if contact.isValid ==  true %}
+				<p>Vous pouvez vous inscrire maintenant à notre plateforme en cliquant sur ce
+					<a href="{{ absolute_url(path('app_register_partner')) }}">lien
+					</a>.
+				</p>
+				<p>Merci.
+				</p>
+
+
+			{% endif %}
+
+		</div>
+	</body>
+</html>
