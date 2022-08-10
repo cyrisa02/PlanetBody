@@ -63,7 +63,7 @@ class PartnerController extends AbstractController
 
             $email = (new TemplatedEmail())
         ->from('cyrisa02.test@gmail.com')
-        //->to($partner->getUser()->getEmail())  
+        //->to($partner->getUser()->getEmail())    à mettre en place en prod
         ->to('atelier.cabriolet@gmail.com')      
         ->subject('Votre statut mis à jour')
         ->htmlTemplate('emails/partnerenable.html.twig')
