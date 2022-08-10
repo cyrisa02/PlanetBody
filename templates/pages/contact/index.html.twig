@@ -15,7 +15,7 @@
 				<th>Mail</th>
 				<th>Société</th>
 				<th>Message</th>
-				<th>Statut</th>
+				<th>Statut du contrat</th>
 				<th>Actions</th>
 			</tr>
 		</thead>
@@ -28,13 +28,13 @@
 					<td>{{ contact.email }}</td>
 					<td>{{ contact.subject }}</td>
 					<td>{{ contact.message }}</td>
-					<td>{{ contact.isValid ? 'Actif' : 'Désactivé' }}</td>
+					<td>{{ contact.isValid ? 'Validé' : 'En attente' }}</td>
 					<td></td>
 
 
 					<td>
 						{# <a href="{{ path('app_contact_show', {'id': contact.id}) }}">show</a> #}
-						<a href="{{ path('app_contact_edit', {'id': contact.id}) }}">Activer-Désactiver</a>
+						<a href="{{ path('app_contact_edit', {'id': contact.id}) }}">Valider</a>
 					</td>
 				</tr>
 			{% else %}

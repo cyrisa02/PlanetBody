@@ -1,14 +1,15 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edit Maincustomer
+{% block title %}Validation du franchisé
 {% endblock %}
 
 {% block body %}
-	<h1>Edit Maincustomer</h1>
+	<h1>Validation du franchisé</h1>
 
-	{{ include('pages/contact/_form.html.twig', {'button_label': 'Update'}) }}
+	{{ include('pages/contact/_form.html.twig', {'button_label': 'Valider'}) }}
 
-	<a href="{{ path('app_contact_index') }}">back to list</a>
+	<a class="btn btn-secondary btn-lg mt-4" href="{{ path('app_contact_index') }}">Retour à la liste</a>
+
 
 	{{ include('pages/contact/_delete_form.html.twig') }}
 {% endblock %}

@@ -1,13 +1,13 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Mailing index
+{% block title %}Liste des Mails
 {% endblock %}
 
 {% block body %}
 	{# {% for message in app.flashes('message') %}
-																<div>{{ message }}</div>
-														
-															{% endfor %} #}
+																		<div>{{ message }}</div>
+																
+																	{% endfor %} #}
 
 	{% for message in app.flashes('success') %}
 		<div class="alert alert-success mt-4">
@@ -22,16 +22,16 @@
 	{% endfor %}
 
 
-	<h1>Mailing index
+	<h1>Liste des Mails
 	</h1>
-	<h2>partner contact ne fonctionne pas , basculer avec la nouvelle relation user?</h2>
+	<h2>En cours de développement</h2>
 	<table class="table">
 		<thead>
 			<tr>
 				<th>Id</th>
-				<th>Title</th>
+				<th>Titre</th>
 				{# <th>Destinataire</th> #}
-				<th>Content</th>
+				<th>Contenu</th>
 				<th>Catégories</th>
 				<th>actions</th>
 			</tr>
@@ -57,11 +57,11 @@
 
 			{% else %}
 				<tr>
-					<td colspan="4">no records found</td>
+					<td colspan="4">Aucun Mail</td>
 				</tr>
 			{% endfor %}
 		</tbody>
 	</table>
 
-	<a href="{{ path('app_mailing_new') }}">Create new</a>
+	<a href="{{ path('app_mailing_new') }}">Ecrire un Mail</a>
 {% endblock %}
