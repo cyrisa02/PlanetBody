@@ -16,10 +16,12 @@ use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 #[Route('/mailing')]
 class MailingController extends AbstractController
 {
+    #[IsGranted('ROLE_USER')]
     #[Route('/', name: 'app_mailing_index', methods: ['GET'])]
     public function index(MailingRepository $mailingRepository,  PaginatorInterface $paginator, Request $request): Response
     {
@@ -38,6 +40,7 @@ class MailingController extends AbstractController
         ]);
     }
 //fonctionne avec l'adresse mail- voir avec la préparation de la newsletter 55min
+    #[IsGranted('ROLE_USER')]
     #[Route('/new', name: 'app_mailing_new', methods: ['GET', 'POST'])]
     public function new(Request $request, MailingRepository $mailingRepository, MailerInterface $mailer): Response
     {
@@ -77,7 +80,7 @@ class MailingController extends AbstractController
             'form' => $form,
         ]);
     }
-
+    #[IsGranted('ROLE_USER')]
     #[Route('/{id}', name: 'app_mailing_show', methods: ['GET'])]
     public function show(Mailing $mailing): Response
     {
@@ -86,6 +89,7 @@ class MailingController extends AbstractController
         ]);
     }
 
+    #[IsGranted('ROLE_USER')]
     #[Route('/{id}/edit', name: 'app_mailing_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Mailing $mailing, MailingRepository $mailingRepository, MailerInterface $mailer): Response
     {

@@ -14,10 +14,12 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 #[Route('/structure_permission')]
 class SporthallPermissionController extends AbstractController
 {
+    #[IsGranted('ROLE_USER')]
     #[Route('/', name: 'app_sporthallpermission_index', methods: ['GET'])]
     public function index(SporthallRepository $sporthallRepository, UserRepository $userRepository, PermissionRepository $permissionRepository, PaginatorInterface $paginator, Request $request): Response
     {
@@ -38,7 +40,7 @@ class SporthallPermissionController extends AbstractController
     }
 
 
-
+#[IsGranted('ROLE_USER')]
 #[Route('/{id}/edition', name: 'app_sporthallpermission_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Sporthall $sporthall, SporthallRepository $sporthallRepository): Response
     {

@@ -13,10 +13,12 @@ use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 #[Route('/franchise')]
 class PartnerController extends AbstractController
 {
+     #[IsGranted('ROLE_USER')]
     #[Route('/', name: 'app_partner_index', methods: ['GET'])]
     public function index(PartnerRepository $partnerRepository, UserRepository $userRepository,PaginatorInterface $paginator, Request $request): Response
     {
@@ -34,7 +36,7 @@ class PartnerController extends AbstractController
             'users' => $userRepository->findAll(),
         ]);
     }
-
+    #[IsGranted('ROLE_USER')]
     #[Route('/creation', name: 'app_partner_new', methods: ['GET', 'POST'])]
     public function new(Request $request, PartnerRepository $partnerRepository): Response
     {
@@ -62,6 +64,7 @@ class PartnerController extends AbstractController
         ]);
     }
 
+     #[IsGranted('ROLE_USER')]
     #[Route('/{id}/edition', name: 'app_partner_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Partner $partner, PartnerRepository $partnerRepository,MailerInterface $mailer): Response
     {

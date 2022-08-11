@@ -16,11 +16,13 @@ use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 
 #[Route('/franchise_permission')]
 class PartnerPermissionController extends AbstractController
 {
+     #[IsGranted('ROLE_USER')]
     #[Route('/', name: 'app_partnerpermission_index', methods: ['GET'])]
     public function index(PartnerRepository $partnerRepository, UserRepository $userRepository, PermissionRepository $permissionRepository, PaginatorInterface $paginator, Request $request): Response
     {
@@ -41,7 +43,7 @@ class PartnerPermissionController extends AbstractController
     }
 
 
-
+ #[IsGranted('ROLE_USER')]
 #[Route('/{id}/edition', name: 'app_partnerpermission_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Partner $partner, PartnerRepository $partnerRepository,MailerInterface $mailer): Response
     {

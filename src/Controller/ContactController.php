@@ -12,10 +12,12 @@ use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 #[Route('/preinscription')]
 class ContactController extends AbstractController
 {
+    #[IsGranted('ROLE_USER')]
     #[Route('/', name: 'app_contact_index', methods: ['GET'])]
     public function index(ContactRepository $contactRepository,  PaginatorInterface $paginator, Request $request): Response
     {
@@ -32,6 +34,7 @@ class ContactController extends AbstractController
         ]);
     }
 
+    #[IsGranted('ROLE_USER')]
     #[Route('/creation', name: 'app_contact_new', methods: ['GET', 'POST'])]
     public function new(Request $request, ContactRepository $contactRepository,MailerInterface $mailer): Response
     {
@@ -75,7 +78,7 @@ class ContactController extends AbstractController
             'contact' => $contact,
         ]);
     }
-
+    #[IsGranted('ROLE_USER')]
     #[Route('/{id}/edition', name: 'app_contact_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Contact $contact, ContactRepository $contactRepository,MailerInterface $mailer): Response
     {

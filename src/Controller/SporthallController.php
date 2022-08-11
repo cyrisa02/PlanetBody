@@ -11,10 +11,12 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 #[Route('/structure')]
 class SporthallController extends AbstractController
 {
+     #[IsGranted('ROLE_USER')]
     #[Route('/', name: 'app_sporthall_index', methods: ['GET'])]
     public function index(SporthallRepository $sporthallRepository, UserRepository $userRepository, PaginatorInterface $paginator, Request $request): Response
     {
@@ -32,7 +34,7 @@ class SporthallController extends AbstractController
             'users' => $userRepository->findAll(),
         ]);
     }
-
+    #[IsGranted('ROLE_USER')]
     #[Route('/creation', name: 'app_sporthall_new', methods: ['GET', 'POST'])]
     public function new(Request $request, SporthallRepository $sporthallRepository): Response
     {
@@ -60,6 +62,7 @@ class SporthallController extends AbstractController
         ]);
     }
 
+     #[IsGranted('ROLE_USER')]
     #[Route('/{id}/edition', name: 'app_sporthall_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Sporthall $sporthall, SporthallRepository $sporthallRepository): Response
     {
