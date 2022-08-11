@@ -35,6 +35,11 @@
 				{% endfor %}
 			</tbody>
 		</table>
+
+		<div class="navigation d-flex justify-content-center mt-4">
+			{{ knp_pagination_render(permissions) }}
+		</div>
+
 		<a class="btn btn-secondary btn-lg mt-4" href="{{ path('home.index') }}">Retour à l'accueil</a>
 
 

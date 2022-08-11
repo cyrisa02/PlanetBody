@@ -45,7 +45,7 @@
 
 				{% else %}
 					<tr>
-						<td colspan="5">no records found</td>
+						<td colspan="5">Pas d'enregistrement</td>
 					</tr>
 				{% endfor %}
 			</tbody>
@@ -54,6 +54,10 @@
 		</table>
 
 		{# <a href="{{ path('app_partner_new') }}">Create new</a> #}
+		<div class="navigation d-flex justify-content-center mt-4">
+			{{ knp_pagination_render(partners) }}
+		</div>
+
 	</div>
 
 {% endblock %}

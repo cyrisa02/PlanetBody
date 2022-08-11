@@ -3,12 +3,13 @@
 namespace App\Controller;
 use App\Entity\User;
 use App\Entity\Sporthall;
-use App\Form\SporthallType;
 use App\Entity\Permission;
+use App\Form\SporthallType;
 use App\Repository\UserRepository;
 use App\Form\SporthallPermissionType;
 use App\Repository\SporthallRepository;
 use App\Repository\PermissionRepository;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -18,10 +19,19 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class SporthallPermissionController extends AbstractController
 {
     #[Route('/', name: 'app_sporthallpermission_index', methods: ['GET'])]
-    public function index(SporthallRepository $sporthallRepository, UserRepository $userRepository, PermissionRepository $permissionRepository): Response
+    public function index(SporthallRepository $sporthallRepository, UserRepository $userRepository, PermissionRepository $permissionRepository, PaginatorInterface $paginator, Request $request): Response
     {
+        $sporthalls = $sporthallRepository->findAll();
+
+        $sporthalls = $paginator->paginate(
+            $sporthalls,
+            
+            $request->query->getInt('page', 1),
+            3
+        );
+
         return $this->render('pages/sporthall/indexpermission.html.twig', [
-            'sporthalls' => $sporthallRepository->findAll(),
+            'sporthalls' => $sporthalls,
             'users' => $userRepository->findAll(),
             'permissions' => $permissionRepository->findAll(),
         ]);

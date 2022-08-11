@@ -5,21 +5,30 @@ namespace App\Controller;
 use App\Entity\Contact;
 use App\Form\ContactType;
 use App\Repository\ContactRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Knp\Component\Pager\PaginatorInterface;
+use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Bridge\Twig\Mime\TemplatedEmail;
-use Symfony\Component\Mailer\MailerInterface;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 #[Route('/preinscription')]
 class ContactController extends AbstractController
 {
     #[Route('/', name: 'app_contact_index', methods: ['GET'])]
-    public function index(ContactRepository $contactRepository): Response
+    public function index(ContactRepository $contactRepository,  PaginatorInterface $paginator, Request $request): Response
     {
+        $contacts = $contactRepository->findAll();
+
+        $contacts = $paginator->paginate(
+            $contacts,
+            
+            $request->query->getInt('page', 1),
+            3
+        );
         return $this->render('pages/contact/index.html.twig', [
-            'contacts' => $contactRepository->findAll(),
+            'contacts' => $contacts,
         ]);
     }
 

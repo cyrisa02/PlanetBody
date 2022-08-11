@@ -8,6 +8,8 @@ use App\Entity\Partner;
 use App\Form\MailingType;
 use App\Repository\MailingRepository;
 use App\Repository\PartnerRepository;
+
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Mailer\MailerInterface;
@@ -19,11 +21,20 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class MailingController extends AbstractController
 {
     #[Route('/', name: 'app_mailing_index', methods: ['GET'])]
-    public function index(MailingRepository $mailingRepository, PartnerRepository $partnerRepository): Response
+    public function index(MailingRepository $mailingRepository,  PaginatorInterface $paginator, Request $request): Response
     {
+        $mailings = $mailingRepository->findAll();
+        $mailings = $paginator->paginate(
+            $mailings,
+
+
+        $request->query->getInt('page', 1),
+            5
+        );
+
         return $this->render('pages/mailing/index.html.twig', [
-            'mailings' => $mailingRepository->findAll(),
-            'partners' => $partnerRepository->findAll(),
+            'mailings' => $mailings,
+            //'partners' => $partnerRepository->findAll(),
         ]);
     }
 //fonctionne avec l'adresse mail- voir avec la préparation de la newsletter 55min

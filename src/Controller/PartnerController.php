@@ -4,23 +4,33 @@ namespace App\Controller;
 use App\Entity\User;
 use App\Entity\Partner;
 use App\Form\PartnerType;
-use App\Repository\PartnerRepository;
 use App\Repository\UserRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Repository\PartnerRepository;
+use Knp\Component\Pager\PaginatorInterface;
+use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Bridge\Twig\Mime\TemplatedEmail;
-use Symfony\Component\Mailer\MailerInterface;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 #[Route('/franchise')]
 class PartnerController extends AbstractController
 {
     #[Route('/', name: 'app_partner_index', methods: ['GET'])]
-    public function index(PartnerRepository $partnerRepository, UserRepository $userRepository): Response
+    public function index(PartnerRepository $partnerRepository, UserRepository $userRepository,PaginatorInterface $paginator, Request $request): Response
     {
+        $partners = $partnerRepository->findAll();
+
+        $partners = $paginator->paginate(
+            $partners,
+
+        $request->query->getInt('page', 1),
+            3
+        );
+
         return $this->render('pages/partner/index.html.twig', [
-            'partners' => $partnerRepository->findAll(),
+            'partners' => $partners,
             'users' => $userRepository->findAll(),
         ]);
     }

@@ -45,5 +45,10 @@
 		</tbody>
 	</table>
 
+	<div class="navigation d-flex justify-content-center mt-4">
+		{{ knp_pagination_render(contacts) }}
+	</div>
+
+
 	{# <a href="{{ path('app_contact_new') }}">Create new</a> #}
 {% endblock %}

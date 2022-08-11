@@ -59,4 +59,8 @@
 		</tbody>
 	</tbody>
 </table>
+<div class="navigation d-flex justify-content-center mt-4">
+	{{ knp_pagination_render(mailings) }}
+</div>
+
 <a href="{{ path('app_user_new') }}">Create new</a>{% endblock %}

@@ -5,9 +5,9 @@
 
 {% block body %}
 	{# {% for message in app.flashes('message') %}
-																			<div>{{ message }}</div>
-																	
-																		{% endfor %} #}
+																					<div>{{ message }}</div>
+																			
+																				{% endfor %} #}
 
 	{% for message in app.flashes('success') %}
 		<div class="alert alert-success mt-4">
@@ -64,4 +64,9 @@
 	</table>
 
 	<a href="{{ path('app_mailing_new') }}">Ecrire un Mail</a>
+
+	<div class="navigation d-flex justify-content-center mt-4">
+		{{ knp_pagination_render(mailings) }}
+	</div>
+
 {% endblock %}

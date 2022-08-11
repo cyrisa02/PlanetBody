@@ -4,21 +4,31 @@ namespace App\Controller;
 use App\Entity\User;
 use App\Entity\Sporthall;
 use App\Form\SporthallType;
-use App\Repository\SporthallRepository;
 use App\Repository\UserRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Repository\SporthallRepository;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 #[Route('/structure')]
 class SporthallController extends AbstractController
 {
     #[Route('/', name: 'app_sporthall_index', methods: ['GET'])]
-    public function index(SporthallRepository $sporthallRepository, UserRepository $userRepository): Response
+    public function index(SporthallRepository $sporthallRepository, UserRepository $userRepository, PaginatorInterface $paginator, Request $request): Response
     {
+
+        $sporthalls = $sporthallRepository->findAll();
+
+        $sporthalls =$paginator->paginate(
+            $sporthalls,
+            
+            $request->query->getInt('page', 1),
+            3
+        );
         return $this->render('pages/sporthall/index.html.twig', [
-            'sporthalls' => $sporthallRepository->findAll(),
+            'sporthalls' => $sporthalls,
             'users' => $userRepository->findAll(),
         ]);
     }
