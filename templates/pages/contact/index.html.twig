@@ -28,7 +28,7 @@
 					<td>{{ contact.email }}</td>
 					<td>{{ contact.subject }}</td>
 					<td>{{ contact.message }}</td>
-					<td>{{ contact.isValid ? 'Validé' : 'En attente' }}</td>
+					<td>{{ contact.isValid ? 'Validé' : 'Désactivé' }}</td>
 					<td></td>
 
 
@@ -49,6 +49,8 @@
 		{{ knp_pagination_render(contacts) }}
 	</div>
 
+	<h3>Maintenant que vous avez reçu une demande par mail d'un futur client, vous pouvez le valider. Ainsi le client recevra un mail pour se connecter. Vous pourrez ensuite valider les permissions.</h3>
 
-	{# <a href="{{ path('app_contact_new') }}">Create new</a> #}
+	{# <a class="btn btn-secondary btn-lg mt-4" href="{{ path('app_contact_new') }}">Créer un franchisé</a> #}
+
 {% endblock %}

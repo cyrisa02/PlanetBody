@@ -10,7 +10,7 @@
 		<thead>
 			<tr>
 				<th>Id User</th>
-				<th>Id OTO</th>
+				<th>Contrat</th>
 				<th>Email</th>
 				<th>Roles</th>
 				{# <th>Password</th> #}
@@ -20,8 +20,9 @@
 				<th>City</th>
 				<th>Created_at</th>
 				<th>Contact</th>
-				<th>Contract</th>
-				<th>actions</th>
+				{# <th>Contract</th> #}
+				{# <th>actions</th> #}
+
 			</tr>
 		</thead>
 
@@ -40,19 +41,19 @@
 					<td>{{ user.city }}</td>
 					<td>{{ user.createdAt ? user.createdAt|date('d-m-Y ') : '' }}</td>
 					<td>{{ user.contact }}</td>
-					{% for partner in user.partners %}
-						<td>{{ partner.contract }}</td>
-					{% endfor %}
+					{# {% for partner in user.partners %}
+																																																			<td>{{ partner.contract }}</td>
+																																																		{% endfor %} #}
 
-					<td>
-						<a href="{{ path('app_user_show', {'id': user.id}) }}">show</a>
-						<a href="{{ path('app_user_edit', {'id': user.id}) }}">edit</a>
-					</td>
+					{# <td>
+																																																																							<a href="{{ path('app_user_show', {'id': user.id}) }}">show</a>
+																																																																							<a href="{{ path('app_user_edit', {'id': user.id}) }}">edit</a>
+																																																																						</td> #}
 				</tr>
 
 			{% else %}
 				<tr>
-					<td colspan="11">no records found</td>
+					<td colspan="11">Pas d'enregistrement</td>
 				</tr>
 			{% endfor %}
 
@@ -60,7 +61,16 @@
 	</tbody>
 </table>
 <div class="navigation d-flex justify-content-center mt-4">
-	{{ knp_pagination_render(mailings) }}
+	{{ knp_pagination_render(users) }}
 </div>
+<div class="container mt-4">
+	<h2>Important</h2>
+	<h3>Pour respecter la marche à suivre</h3>
+	<p>Il faut relier le contrat à la bonne adresse mail du franchisé.</p>
+</div>
+<a class="btn btn-primary btn-lg mt-4" href="{{ path('app_partner_new') }}">Cliquer ici! Pour un franchisé</a>
+<hr class="my-4">
 
-<a href="{{ path('app_user_new') }}">Create new</a>{% endblock %}
+<h3>Pour respecter la marche à suivre</h3>
+<p>Il faut relier le contrat à la bonne adresse mail de la salle de sport.</p>
+<a class="btn btn-primary btn-lg mt-4" href="{{ path('app_sporthall_new') }}">Cliquer ici! Pour une salle de sport</a></div>{% endblock %}

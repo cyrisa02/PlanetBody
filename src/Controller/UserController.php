@@ -2,23 +2,35 @@
 
 namespace App\Controller;
 
+use App\Entity\Partner;
 use App\Entity\User;
 use App\Form\UserType;
-use App\Repository\PartnerRepository;
 use App\Repository\UserRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Repository\PartnerRepository;
+use App\Repository\PermissionRepository;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 #[Route('/clients')]
 class UserController extends AbstractController
 {
     #[Route('/', name: 'app_user_index', methods: ['GET'])]
-    public function index(UserRepository $userRepository, PartnerRepository $partnerRepository): Response
+    public function index(UserRepository $userRepository, PartnerRepository $partnerRepository,PaginatorInterface $paginator, Request $request): Response
     {
+
+        $users = $userRepository->findAll();
+
+        $users = $paginator->paginate(
+            $users,
+
+        $request->query->getInt('page', 1),
+            3
+        );
         return $this->render('pages/user/index.html.twig', [
-            'users' => $userRepository->findAll(),
+            'users' => $users,
             'partners'=> $partnerRepository->findAll(),
         ]);
     }
@@ -45,8 +57,13 @@ class UserController extends AbstractController
     #[Route('/{id}', name: 'app_user_show', methods: ['GET'])]
     public function show(User $user): Response
     {
+
+        
+        
         return $this->render('pages/user/show.html.twig', [
             'user' => $user,
+            
+            
         ]);
     }
 

@@ -68,10 +68,10 @@ class ContactPartnerType extends AbstractType
 
             ->add('isValid', CheckboxType::class, [
                 'attr' => [
-                    'class' => 'form-check-input',
+                    'class' => 'd-none',
                 ],
                 'required' => false,
-                'label' => 'Je déclare être d\'accord avec le RGPD     .',
+                'label' => '',
                 'label_attr' => [
                     'class' => 'form-check-label'
                 ]

@@ -33,7 +33,7 @@ class ContactController extends AbstractController
     }
 
     #[Route('/creation', name: 'app_contact_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, ContactRepository $contactRepository): Response
+    public function new(Request $request, ContactRepository $contactRepository,MailerInterface $mailer): Response
     {
         $contact = new Contact();
         $form = $this->createForm(ContactType::class, $contact);
@@ -44,7 +44,24 @@ class ContactController extends AbstractController
 
             return $this->redirectToRoute('app_contact_index', [], Response::HTTP_SEE_OTHER);
         }
+        $email = (new TemplatedEmail())
+        ->from('cyrisa02.test@gmail.com')
+        //->to($contact->getEmail())  fonctionne très bien, dévalider la ligne 65 et valider la 64
+        ->to('atelier.cabriolet@gmail.com')      
+        //->subject($contact->getSubject())
+        ->htmlTemplate('emails/contactanswercreate.html.twig')
+        ->context([
+            'contact'=>$contact
+        ]);
+        $mailer->send($email);
 
+        $this->addFlash(
+                'success',
+                'Votre demande a été enregistrée avec succès'
+            );
+
+             return $this->redirectToRoute('app_contact_index', [], Response::HTTP_SEE_OTHER);
+        
         return $this->renderForm('pages/contact/new.html.twig', [
             'contact' => $contact,
             'form' => $form,
@@ -73,7 +90,7 @@ class ContactController extends AbstractController
         //->to($contact->getEmail())  fonctionne très bien, dévalider la ligne 65 et valider la 64
         ->to('atelier.cabriolet@gmail.com')      
         ->subject($contact->getSubject())
-        ->htmlTemplate('emails/contactanswer.html.twig')
+        ->htmlTemplate('emails/contactansweredit.html.twig')
         ->context([
             'contact'=>$contact
         ]);

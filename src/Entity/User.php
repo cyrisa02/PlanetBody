@@ -47,11 +47,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?\DateTimeImmutable $created_at = null;
 
     #[ORM\OneToOne(inversedBy: 'user', cascade: ['persist', 'remove'])]
-    private ?Maincustomer $maincustomer = null;
-
-   
-
-    
+    private ?Maincustomer $maincustomer = null;  
     
 
     #[ORM\Column(length: 190, nullable: true)]

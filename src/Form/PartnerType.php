@@ -2,9 +2,11 @@
 
 namespace App\Form;
 
+use App\Entity\User;
 use App\Entity\Partner;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
@@ -27,6 +29,25 @@ class PartnerType extends AbstractType
                 ],
                 
             ])
+             ->add('user',EntityType::class, [
+                'required' => false,
+                'class' => User::class,
+                'choice_label'=>function($email){
+                return $email->getEmail();
+            },
+            'label' => 'Merci de confirmer votre adresse mail. ',
+                'attr' => [
+                    'class' => 'form-control '
+                ],
+                'placeholder'=>'Choisissez votre email dans la liste',
+
+            ])
+            //->add('candidatures')
+        
+    
+            //->add('name')
+            //->add('city')
+            //->add('contact')
             ->add('is_enable', CheckboxType::class, [
                 'attr' => [
                     'class' => 'form-check-input',

@@ -5,19 +5,29 @@ namespace App\Controller;
 use App\Entity\Contract;
 use App\Form\ContractType;
 use App\Repository\ContractRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 #[Route('/contrat')]
 class ContractController extends AbstractController
 {
     #[Route('/', name: 'app_contract_index', methods: ['GET'])]
-    public function index(ContractRepository $contractRepository): Response
+    public function index(ContractRepository $contractRepository, PaginatorInterface $paginator, Request $request): Response
     {
+        $contracts = $contractRepository->findAll();
+
+        $contracts = $paginator->paginate(
+            $contracts,
+            
+            $request->query->getInt('page', 1),
+            2
+        );
+
         return $this->render('pages/contract/index.html.twig', [
-            'contracts' => $contractRepository->findAll(),
+            'contracts' => $contracts,
         ]);
     }
 
