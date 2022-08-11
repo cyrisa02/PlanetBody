@@ -33,26 +33,27 @@
 				<li class="nav-item dropdown">
 					<a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Marketing</a>
 					<div class="dropdown-menu">
+						<a class="dropdown-item" href="{{ path('app_contact_index')}}">Gérer les pré-inscriptions des partenaires</a>
+						<a class="dropdown-item" href="{{ path('app_register_partner')}}">Ajout d'un Partenaire</a>
+
 						<a class="dropdown-item" href="{{ path('app_partner_index')}}">Activer/désactiver les partenaires et choix contrat</a>
 						<a class="dropdown-item" href="{{ path('app_partnerpermission_index')}}">Gérer les partenaires et les permissions</a>
-						<a class="dropdown-item" href="{{ path('app_contact_index')}}">Gérer les pré-inscription des partenaires</a>
 
-
-						<a class="dropdown-item" href="{{ path('app_sporthall_index')}}">Activer/désactiver les structures</a>
-						<a class="dropdown-item" href="{{ path('app_sporthallpermission_index')}}">Gérer les structures et les permissions</a>
-
+						<div class="dropdown-divider"></div>
 
 						<a class="dropdown-item" href="{{ path('app_permission_index')}}">Gestion des Permissions</a>
+						<div class="dropdown-divider"></div>
 
 
-						<a class="dropdown-item" href="{{ path('app_mailing_index')}}">Gestion des Mails</a>
+						<a class="dropdown-item" href="{{ path('app_mailing_index')}}">Gestion des Mails en cours de développement</a>
 
 
 						<div class="dropdown-divider"></div>
-						<a class="dropdown-item" href="{{ path('app_register_partner')}}">Ajout d'un Partenaire</a>
 
 
 						<a class="dropdown-item" href="{{ path('app_register_sporthall')}}">Ajout d'une Salle de sport</a>
+						<a class="dropdown-item" href="{{ path('app_sporthall_index')}}">Activer/désactiver les structures</a>
+						<a class="dropdown-item" href="{{ path('app_sporthallpermission_index')}}">Gérer les structures et les permissions</a>
 
 
 					</div>

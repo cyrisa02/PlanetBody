@@ -5,11 +5,9 @@ namespace App\Controller;
 use App\Entity\Mailing;
 use App\Entity\User;
 use App\Entity\Partner;
-use App\Entity\Sentmail;
 use App\Form\MailingType;
 use App\Repository\MailingRepository;
 use App\Repository\PartnerRepository;
-use App\Repository\SentmailRepository;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Mailer\MailerInterface;
@@ -78,22 +76,21 @@ class MailingController extends AbstractController
     }
 
     #[Route('/{id}/edit', name: 'app_mailing_edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, Mailing $mailing, MailingRepository $mailingRepository, MailerInterface $mailer, Sentmail $sentmail, SentmailRepository $sentmailRepository): Response
+    public function edit(Request $request, Mailing $mailing, MailingRepository $mailingRepository, MailerInterface $mailer): Response
     {
         $form = $this->createForm(MailingType::class, $mailing);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $mailingRepository->add($mailing, true);
-            $sentmailRepository->add($sentmail, true);
-
-            $to = $sentmail->getUsers();
+            
+            
 
             $email = (new TemplatedEmail())
         //->from($mailing->getPartners())
         ->from('cyrisa02.test@gmail.com')
         //->to('cyrisa02.test@gmail.com')
-        ->to($to->getEmail())
+        ->to('atelier.cabriolet@gmail.com')
         ->subject($mailing->getTitle())
 
         ->text('Recherche de mail!');

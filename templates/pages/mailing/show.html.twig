@@ -1,31 +1,35 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Mailing
+{% block title %}Mail
 {% endblock %}
 
 {% block body %}
-	<h1>Mailing</h1>
+	<div class="container mt-4">
+		<h1>Mail</h1>
 
-	<table class="table">
-		<tbody>
-			<tr>
-				<th>Id</th>
-				<td>{{ mailing.id }}</td>
-			</tr>
-			<tr>
-				<th>Title</th>
-				<td>{{ mailing.title }}</td>
-			</tr>
-			<tr>
-				<th>Content</th>
-				<td>{{ mailing.content }}</td>
-			</tr>
-		</tbody>
-	</table>
+		<table class="table">
+			<tbody>
+				<tr>
+					<th>Id</th>
+					<td>{{ mailing.id }}</td>
+				</tr>
+				<tr>
+					<th>Titre</th>
+					<td>{{ mailing.title }}</td>
+				</tr>
+				<tr>
+					<th>Message</th>
+					<td>{{ mailing.content }}</td>
+				</tr>
+			</tbody>
+		</table>
 
-	<a href="{{ path('app_mailing_index') }}">back to list</a>
+		<a class="btn btn-secondary btn-lg mt-4" href="{{ path('app_mailing_index') }}">Retour à la liste</a>
 
-	<a href="{{ path('app_mailing_edit', {'id': mailing.id}) }}">edit</a>
 
-	{{ include('pages/mailing/_delete_form.html.twig') }}
+		<a class="btn btn-primary btn-lg mt-4" href="{{ path('app_mailing_edit', {'id': mailing.id}) }}">Modifier</a>
+
+
+		{{ include('pages/mailing/_delete_form.html.twig') }}</div>
+
 {% endblock %}

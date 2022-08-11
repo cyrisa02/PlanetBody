@@ -1,14 +1,17 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edit Mailing
+{% block title %}Modification du mail
 {% endblock %}
 
 {% block body %}
-	<h1>Edit Mailing</h1>
+	<div class="container mt-4">
+		<h1>Modification du Mail</h1>
 
-	{{ include('pages/mailing/_form.html.twig', {'button_label': 'Update'}) }}
+		{{ include('pages/mailing/_form.html.twig', {'button_label': 'Update'}) }}
 
-	<a href="{{ path('app_mailing_index') }}">back to list</a>
+		<a class="btn btn-secondary btn-lg mt-4" href="{{ path('app_mailing_index') }}">Retour à laliste</a>
 
-	{{ include('pages/mailing/_delete_form.html.twig') }}
+
+		{{ include('pages/mailing/_delete_form.html.twig') }}</div>
+
 {% endblock %}

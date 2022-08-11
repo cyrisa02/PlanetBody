@@ -5,9 +5,9 @@
 
 {% block body %}
 	{# {% for message in app.flashes('message') %}
-																		<div>{{ message }}</div>
-																
-																	{% endfor %} #}
+																			<div>{{ message }}</div>
+																	
+																		{% endfor %} #}
 
 	{% for message in app.flashes('success') %}
 		<div class="alert alert-success mt-4">
@@ -49,8 +49,8 @@
 					<td>{{ mailing.categories.name }}</td>
 
 					<td>
-						<a href="{{ path('app_mailing_show', {'id': mailing.id}) }}">show</a>
-						<a href="{{ path('app_mailing_edit', {'id': mailing.id}) }}">edit</a>
+						<a href="{{ path('app_mailing_show', {'id': mailing.id}) }}">Voir</a>
+						<a href="{{ path('app_mailing_edit', {'id': mailing.id}) }}">Modifier</a>
 					</td>
 				</tr>
 				{# {% endfor %} #}
