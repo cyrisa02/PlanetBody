@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des contrats
+{% endblock %}
+
+{% block body %}
+	<div class="container mt-4">
+		<h1>Liste des contrats</h1>
+
+
+		<table class="table">
+			<thead>
+				<tr>
+					<th>Id</th>
+					<th>Nom du contrat</th>
+					<th>Nom du franchisé</th>
+					<th>Nombre de salles de sport</th>
+					<th>Tarif TTC/mois</th>
+					<th>Actions</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for contract in contracts %}
+					<tr>
+						<td>{{ contract.id }}</td>
+						<td>{{ contract.name }}</td>
+						<td>{{ contract.customer }}</td>
+						<td>{{ contract.structureNb }}</td>
+						<td>{{ contract.price }}</td>
+						<td>
+							<a href="{{ path('app_contract_show', {'id': contract.id}) }}">Voir</a>
+							<a href="{{ path('app_contract_edit', {'id': contract.id}) }}">Modifier</a>
+						</td>
+					</tr>
+				{% else %}
+					<tr>
+						<td colspan="6">Pas d'enregistrement</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+
+		<a class="btn btn-secondary btn-lg mt-4" href="{{ path('app_contract_new') }}">Créer un nouveau contrat</a>
+
+	</div>
+
+{% endblock %}
