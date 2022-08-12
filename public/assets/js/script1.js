@@ -1,4 +1,3 @@
-console.log ('essai')
 
 const userCardTemplate = document.querySelector("[data-user-template]")
 const userCardContainer = document.querySelector("[data-user-cards-container]")
@@ -13,7 +12,7 @@ searchInput.addEventListener("input", e => {
     const value = e.target.value.toLowerCase()
     users.forEach(user => {
          
-        const isVisible = user.name.toLowerCase().includes(value) || user.city.toLowerCase().includes(value)
+        const isVisible = user.name.toLowerCase().includes(value) || user.city.toLowerCase().includes(value) 
         //console.log(user.element.classList)
         user.element.classList.toggle("d-none", !isVisible )
     })
@@ -29,11 +28,13 @@ searchInput.addEventListener("input", e => {
         const card = userCardTemplate.content.cloneNode(true).children[0]
          const header = card.querySelector("[data-header]")
          const body = card.querySelector("[data-body]")
+           
          
          header.textContent= user.name 
          body.textContent= user.city
+        
          
          userCardContainer.append(card)
-         return { name: user.name, city: user.city, element: card}
+         return { name: user.name, city: user.city,  element: card}
          })
  })

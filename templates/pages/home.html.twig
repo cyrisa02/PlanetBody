@@ -7,9 +7,9 @@
 	<div
 		class="container mt-4">
 		{# {% if  sporthall.isEnable == false %}
-																																						
-																																									<h3>Merci de votre inscription, nous traitons votre demande</h3>
-																																								{% endif %} #}
+																																																				
+																																																							<h3>Merci de votre inscription, nous traitons votre demande</h3>
+																																																						{% endif %} #}
 
 
 		<div class="jumbotron">
@@ -54,17 +54,23 @@
 					<label for="search">Recherchez votre partenaire</label>
 					<input type="search" id="search" data-search>
 				</div>
-				<div class="formation-cards mt-4" data-formation-cards-container style="display: flex;flex-direction: row;
-																																																																																																																																								flex-wrap: wrap;
-																																																																																																																							justify-content: space-between;
-																																																																																																																							align-items: stretch;
-																																																																																																																																				align-content: space-around;"></div>
+				<div class="user-cards mt-4" data-user-cards-container style="display: flex;flex-direction: row;
+																																																																																																																																																																											flex-wrap: wrap;
+																																																																																																																																																										justify-content: space-between;
+																																																																																																																																																										align-items: stretch;
+																																																																																																																																																																							align-content: space-around;"></div>
 
-				<template data-formation-template>
+				<template data-user-template>
 					<div class="card border-primary mb-3" style="width:300px;">
 						<div class="card-header bg-secondary" data-header></div>
+
+						<div class="card-body bg-light" data-body2></div>
+
+
 						<div class="card-body bg-light" data-body></div>
-						<a class="btn btn-primary btn-sm row my-2 ms-2  " href="{{path('readme')}}" role="button" style="width:100px;">Sélectionner</a>
+
+
+						<a class="btn btn-primary btn-sm row my-2 ms-2  " href="{{path('readme')}}" role="button" style="width:100px;"></a>
 					</div>
 				</template>
 			</div>
