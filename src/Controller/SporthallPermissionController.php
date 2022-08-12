@@ -10,11 +10,13 @@ use App\Form\SporthallPermissionType;
 use App\Repository\SporthallRepository;
 use App\Repository\PermissionRepository;
 use Knp\Component\Pager\PaginatorInterface;
+use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 #[Route('/structure_permission')]
 class SporthallPermissionController extends AbstractController
@@ -42,13 +44,25 @@ class SporthallPermissionController extends AbstractController
 
 #[IsGranted('ROLE_USER')]
 #[Route('/{id}/edition', name: 'app_sporthallpermission_edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, Sporthall $sporthall, SporthallRepository $sporthallRepository): Response
+    public function edit(Request $request, Sporthall $sporthall, SporthallRepository $sporthallRepository,MailerInterface $mailer): Response
     {
         $form = $this->createForm(SporthallPermissionType::class, $sporthall);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $sporthallRepository->add($sporthall, true);
+
+             $email = (new TemplatedEmail())
+        ->from('cyrisa02.test@gmail.com')
+        //->to($partner->getUser()->getEmail())    à mettre en place en prod
+        ->to('atelier.cabriolet@gmail.com')      
+        ->subject('Votre statut mis à jour')
+        ->htmlTemplate('emails/sporthallpermission.html.twig')
+        ->context([
+            'sporthall'=>$sporthall
+        ]);
+        $mailer->send($email);
+
 
             $this->addFlash(
                 'success',

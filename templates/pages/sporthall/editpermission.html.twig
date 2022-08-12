@@ -1,12 +1,13 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Activer une structure
+{% block title %}Sélectionner les options
 {% endblock %}
 
 {% block body %}
 	<div class="container mt-4">
-		<h1>Désactiver / Activer un compte</h1>
-		<h2>Nom de la salle de sport:{{ sporthall.user.name }}
+		<h1>Sélectionner les options d'une structure</h1>
+		<h2>Nom de la salle de sport:
+			{{ sporthall.user.name }}
 
 		</h2>
 		<h3>N°:{{ sporthall.id }}</h3>
@@ -16,8 +17,6 @@
 
 		<a class="btn btn-secondary btn-lg mt-4" href="{{ path('app_sporthallpermission_index') }}">Retour à la liste</a>
 
-
-		<h1>ENvoyer un email</h1>
 
 		{{ include('pages/sporthall/_delete_form.html.twig') }}</div>
 
