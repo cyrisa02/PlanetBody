@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
-#[Route('/showpermission')]
+#[Route('/voir_permission')]
 class ShowpermissionController extends AbstractController
 {
     #[Route('/', name: 'app_showpermission_index', methods: ['GET'])]

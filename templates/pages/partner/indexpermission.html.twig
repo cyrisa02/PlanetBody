@@ -33,7 +33,11 @@
 							{% for permission in partner.permissions %}
 
 								{{ permission.name }}
-								/
+								-(
+								{{ permission.isEnable ? 'Active' : 'Désactivée' }}
+								)-
+								
+																/
 
 							{% endfor %}
 						</td>
