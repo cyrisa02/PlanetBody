@@ -9,14 +9,22 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
+use ApiPlatform\Core\Annotation\ApiResource;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 #[UniqueEntity(fields: ['email'], message: 'There is already an account with this email')]
+#[ApiResource( 
+    collectionOperations: ['get'],
+    itemOperations: ['get'],    
+    normalizationContext: ['groups' => ['read'], "enable_max_depth"=>true],
+)]
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
+    #[Groups(['read'])]
     private ?int $id = null;
 
     #[ORM\Column(length: 180, unique: true)]
@@ -32,15 +40,19 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?string $password = null;
 
     #[ORM\Column(length: 190)]
+    #[Groups(['read'])]
     private ?string $name = null;
 
     #[ORM\Column(length: 190)]
+    #[Groups(['read'])]
     private ?string $address = null;
 
     #[ORM\Column(length: 190)]
+    #[Groups(['read'])]
     private ?string $zipcode = null;
 
     #[ORM\Column(length: 190)]
+    #[Groups(['read'])]
     private ?string $city = null;
 
     #[ORM\Column]

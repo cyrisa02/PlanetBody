@@ -7,9 +7,9 @@
 	<div
 		class="container mt-4">
 		{# {% if  sporthall.isEnable == false %}
-		
-					<h3>Merci de votre inscription, nous traitons votre demande</h3>
-				{% endif %} #}
+																																						
+																																									<h3>Merci de votre inscription, nous traitons votre demande</h3>
+																																								{% endif %} #}
 
 
 		<div class="jumbotron">
@@ -48,7 +48,65 @@
 			<a class="btn btn-primary btn-lg" href="{{ path('app_claim')}}" role="button">Réclamation</a>
 
 
-		</div>
-	</div>
+			<hr class="my-4">
+			<div class="container mt-4">
+				<div class="search-wrapper">
+					<label for="search">Recherchez votre partenaire</label>
+					<input type="search" id="search" data-search>
+				</div>
+				<div class="formation-cards mt-4" data-formation-cards-container style="display: flex;flex-direction: row;
+																																																																																																																																								flex-wrap: wrap;
+																																																																																																																							justify-content: space-between;
+																																																																																																																							align-items: stretch;
+																																																																																																																																				align-content: space-around;"></div>
 
-{% endblock %}
+				<template data-formation-template>
+					<div class="card border-primary mb-3" style="width:300px;">
+						<div class="card-header bg-secondary" data-header></div>
+						<div class="card-body bg-light" data-body></div>
+						<a class="btn btn-primary btn-sm row my-2 ms-2  " href="{{path('readme')}}" role="button" style="width:100px;">Sélectionner</a>
+					</div>
+				</template>
+			</div>
+
+
+			<hr class="my-4">
+			<h2>Version avec Symfony pour l'exemple</h2>
+			<div class="container mt-4">
+				<div class="row">
+					{% for user in users %}
+						<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 mb-3">
+							<article class="card border-primary mb-3 " style="max-width: 20rem; ">
+
+
+								<div class="card-header bg-secondary">
+
+									<h1>Partenaire N°:
+										{{ user.id}}
+									</h1>
+
+
+									{# <iframe width="250" height="100" src="{{ formation.image }} " title="formation" frameborder="0" allowfullscreen></iframe> #}
+
+
+								</div>
+								<div class="card-body bg-light">
+
+									<h4 class="card-title">{{ user.name}}
+									</h4>
+									<p class="card-text">{{ user.address }}</p>
+									<p class="card-text">{{ user.zipcode }}</p>
+									<p class="card-text">{{ user.city }}</p>
+									{# <a class="btn btn-primary btn-lg row my-2" href="{{ path ('app_user_show',{'id':user.id})}}" role="button">Sélectionner</a> #}
+								</div>
+							</article>
+						</div>
+
+					{% endfor %}
+				</div>
+			</div>
+		</div>
+
+
+	</div>
+</div>{% endblock %}

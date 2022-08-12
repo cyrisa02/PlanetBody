@@ -57,15 +57,13 @@ class UserController extends AbstractController
     }
 
     #[Route('/{id}', name: 'app_user_show', methods: ['GET'])]
-    public function show(User $user): Response
-    {
-
-        
+    public function show(User $user, PermissionRepository $permissionRepository): Response
+    {      
         
         return $this->render('pages/user/show.html.twig', [
             'user' => $user,
-            
-            
+            'permissions' => $permissionRepository->findAll(),
+                       
         ]);
     }
 

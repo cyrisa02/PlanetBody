@@ -18,13 +18,13 @@
 					<td>{{ user.email }}</td>
 				</tr>
 				{# <tr>
-																																																	<th>Roles</th>
-																																																	<td>{{ user.roles ? user.roles|json_encode : '' }}</td>
-																																																</tr> #}
+																																																					<th>Roles</th>
+																																																					<td>{{ user.roles ? user.roles|json_encode : '' }}</td>
+																																																				</tr> #}
 				{# <tr>
-																																																	<th>Password</th>
-																																																	<td>{{ user.password }}</td>
-																																																</tr> #}
+																																																					<th>Password</th>
+																																																					<td>{{ user.password }}</td>
+																																																				</tr> #}
 				<tr>
 					<th>Société</th>
 					<td>{{ user.name }}</td>
@@ -42,9 +42,9 @@
 					<td>{{ user.city }}</td>
 				</tr>
 				{# <tr>
-																																																	<th>Created_at</th>
-																																																	<td>{{ user.createdAt ? user.createdAt|date('Y-m-d H:i:s') : '' }}</td>
-																																																</tr> #}
+																																																					<th>Created_at</th>
+																																																					<td>{{ user.createdAt ? user.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+																																																				</tr> #}
 				<tr>
 					<th>Contact</th>
 					<td>{{ user.contact }}</td>
@@ -52,10 +52,10 @@
 				<tr>
 					<th>Options</th>
 					<td>
-						{# {% for permission in permissions %}
-													{{ permission.name }}
-													/
-												{% endfor %} #}
+						{% for permission in permissions %}
+							{{ permission.name }}
+							/
+						{% endfor %}
 					</td>
 
 				</tr>
@@ -66,7 +66,7 @@
 		<a href="{{ path('home.index') }}">Retour accueil</a>
 
 		{# <a href="{{ path('app_user_edit', {'id': user.id}) }}">edit</a>
-																								
-																										{{ include('pages/user/_delete_form.html.twig') }}</div> #}
+																										
+																												{{ include('pages/user/_delete_form.html.twig') }}</div> #}
 
 	{% endblock %}
