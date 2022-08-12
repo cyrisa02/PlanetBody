@@ -22,7 +22,7 @@ class SporthallType extends AbstractType
                 'choice_label'=>function($email){
                 return $email->getEmail();
             },
-            'label' => 'Merci de confirmer votre adresse mail. ',
+            'label' => 'Merci de confirmer l\'adresse mail de la salle de sport. ',
                 'attr' => [
                     'class' => 'form-control '
                 ],

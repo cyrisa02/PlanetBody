@@ -15,6 +15,10 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
+
+/**
+ * This Controller with the method index allows to link the Entity User with The Entity Partner
+ */
 #[Route('/clients')]
 class UserController extends AbstractController
 {

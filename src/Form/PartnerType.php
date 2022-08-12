@@ -23,7 +23,7 @@ class PartnerType extends AbstractType
                     'minlenght' => '2',
                     'maxlenght' => '190',
                 ],
-                'label' => 'Type de contrat',
+                'label' => 'Type de contrat du franchisé',
                 'label_attr' => [
                     'class' => 'form-label  mt-4'
                 ],
@@ -35,7 +35,7 @@ class PartnerType extends AbstractType
                 'choice_label'=>function($email){
                 return $email->getEmail();
             },
-            'label' => 'Merci de confirmer votre adresse mail. ',
+            'label' => 'Merci de confirmer l\'adresse mail du franchisé. ',
                 'attr' => [
                     'class' => 'form-control '
                 ],

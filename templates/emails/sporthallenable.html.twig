@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+	</head>
+	<body>
+		<h1>Demande de M/Mme
+			{{ sporthall.user.contact }}</h1>
+
+		<p>Email :
+			{{ sporthall.user.email }}</p>
+
+		<p>Société :
+			{{ sporthall.user.name }}</p>
+
+		<p>Message :</p>
+		<div>
+			<p>Votre statut a changé, il est maintenant:
+				{{ sporthall.isEnable ? 'Actif' : 'Désactivé' }}
+
+
+			</p>
+			<p>Cordialement</p>
+			<p>L'équipe Marketing de PlanetBody.</p>
+
+
+		</div>
+	</body>
+</html>

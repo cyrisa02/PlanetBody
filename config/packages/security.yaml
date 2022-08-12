@@ -34,13 +34,8 @@ security:
     # - { path: ^/admin, roles: ROLE_ADMIN }
     # - { path: ^/profile, roles: ROLE_USER }
     - { path: ^/preinscription, roles: ROLE_ADMIN }
-    - { path: ^/clients/, roles: ROLE_ADMIN }
-    - { path: ^/clients/, roles: ROLE_ADMIN }
     - { path: ^/franchise/, roles: ROLE_ADMIN }
     - { path: ^/franchise_permission/, roles: ROLE_ADMIN }
-    - { path: ^/structure/, roles: ROLE_ADMIN }
-    - { path: ^/franchise_permission/, roles: ROLE_ADMIN }
-    - { path: ^/structure_permission/, roles: ROLE_ADMIN }
     - { path: ^/permission/, roles: ROLE_ADMIN }
     - { path: ^/contrat/, roles: ROLE_ADMIN }
     - { path: ^/mailing/, roles: ROLE_ADMIN }

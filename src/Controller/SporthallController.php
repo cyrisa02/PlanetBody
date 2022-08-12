@@ -7,11 +7,13 @@ use App\Form\SporthallType;
 use App\Repository\UserRepository;
 use App\Repository\SporthallRepository;
 use Knp\Component\Pager\PaginatorInterface;
+use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 #[Route('/structure')]
 class SporthallController extends AbstractController
@@ -64,13 +66,28 @@ class SporthallController extends AbstractController
 
      #[IsGranted('ROLE_USER')]
     #[Route('/{id}/edition', name: 'app_sporthall_edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, Sporthall $sporthall, SporthallRepository $sporthallRepository): Response
+    public function edit(Request $request, Sporthall $sporthall, SporthallRepository $sporthallRepository,MailerInterface $mailer): Response
     {
         $form = $this->createForm(SporthallType::class, $sporthall);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $sporthallRepository->add($sporthall, true);
+            $email = (new TemplatedEmail())
+        ->from('cyrisa02.test@gmail.com')
+        //->to($partner->getUser()->getEmail())    à mettre en place en prod
+        ->to('atelier.cabriolet@gmail.com')      
+        ->subject('Votre statut mis à jour')
+        ->htmlTemplate('emails/sporthallenable.html.twig')
+        ->context([
+            'sporthall'=>$sporthall
+        ]);
+        $mailer->send($email);
+
+        $this->addFlash(
+                'success',
+                'Votre demande a été enregistrée avec succès'
+            );
 
             return $this->redirectToRoute('app_sporthall_index', [], Response::HTTP_SEE_OTHER);
         }

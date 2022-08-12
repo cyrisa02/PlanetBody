@@ -1,12 +1,20 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New Sporthall
+{% block title %}Confirmation
 {% endblock %}
 
 {% block body %}
-	<h1>Create new Sporthall</h1>
+	<div class="container mt-4">
+		<h1>Confirmation Salle de Sport</h1>
 
-	{{ include('pages/sporthall/_form.html.twig') }}
+		<h2>Sélectionner la bonne adresse mail dans la liste.</h2>
 
-	<a href="{{ path('app_sporthall_index') }}">back to list</a>
+		<h3>Vous pouvez activer le compte si vous le souhaitez ou plus tard à votre convenance.
+		</h3>
+
+		{{ include('pages/sporthall/_form.html.twig') }}
+
+		<a class="btn btn-secondary btn-lg mt-4" href="{{ path('app_sporthall_index') }}">Retour à la liste</a>
+
+	</div>
 {% endblock %}
