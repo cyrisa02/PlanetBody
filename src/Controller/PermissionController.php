@@ -18,14 +18,11 @@ class PermissionController extends AbstractController
     public function index(PermissionRepository $permissionRepository, PaginatorInterface $paginator, Request $request): Response
     {
         $permissions = $permissionRepository->findAll();
-
         $permissions =$paginator->paginate(
-            $permissions,
-            
+            $permissions,            
             $request->query->getInt('page', 1),
             3
         );
-
         return $this->render('pages/permission/index.html.twig', [
             'permissions' => $permissions,
         ]);
