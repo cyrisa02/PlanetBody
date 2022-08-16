@@ -29,7 +29,7 @@ class SporthallController extends AbstractController
             $sporthalls,
             
             $request->query->getInt('page', 1),
-            3
+            1
         );
         return $this->render('pages/sporthall/index.html.twig', [
             'sporthalls' => $sporthalls,

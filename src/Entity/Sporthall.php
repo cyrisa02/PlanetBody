@@ -26,8 +26,7 @@ class Sporthall
 
     
 
-    #[ORM\OneToMany(mappedBy: 'sporthalls', targetEntity: Partner::class)]
-    private Collection $partners;
+   
 
     #[ORM\ManyToMany(targetEntity: Permission::class, inversedBy: 'sporthalls')]
     private Collection $permissions;
@@ -38,10 +37,13 @@ class Sporthall
     #[ORM\OneToOne(mappedBy: 'sporthalls', cascade: ['persist', 'remove'])]
     private ?User $user = null;
 
+    #[ORM\ManyToOne(inversedBy: 'sporthalls')]
+    private ?Partner $partners = null;
+
     public function __construct()
     {
         
-        $this->partners = new ArrayCollection();
+        
         $this->permissions = new ArrayCollection();
         $this->mailings = new ArrayCollection();
     }
@@ -70,35 +72,7 @@ class Sporthall
     
 
     
-    /**
-     * @return Collection<int, Partner>
-     */
-    public function getPartners(): Collection
-    {
-        return $this->partners;
-    }
-
-    public function addPartner(Partner $partner): self
-    {
-        if (!$this->partners->contains($partner)) {
-            $this->partners->add($partner);
-            $partner->setSporthalls($this);
-        }
-
-        return $this;
-    }
-
-    public function removePartner(Partner $partner): self
-    {
-        if ($this->partners->removeElement($partner)) {
-            // set the owning side to null (unless already changed)
-            if ($partner->getSporthalls() === $this) {
-                $partner->setSporthalls(null);
-            }
-        }
-
-        return $this;
-    }
+    
 
     /**
      * @return Collection<int, Permission>
@@ -166,6 +140,18 @@ class Sporthall
         }
 
         $this->user = $user;
+
+        return $this;
+    }
+
+    public function getPartners(): ?Partner
+    {
+        return $this->partners;
+    }
+
+    public function setPartners(?Partner $partners): self
+    {
+        $this->partners = $partners;
 
         return $this;
     }

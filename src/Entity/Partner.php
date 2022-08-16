@@ -25,9 +25,7 @@ class Partner
 
     
     
-    #[ORM\ManyToOne(inversedBy: 'partners')]
-    private ?Sporthall $sporthalls = null;
-
+    
     #[ORM\ManyToMany(targetEntity: Permission::class, inversedBy: 'partners')]
     private Collection $permissions;
 
@@ -37,6 +35,9 @@ class Partner
     #[ORM\OneToOne(mappedBy: 'partners', cascade: ['persist', 'remove'])]
     private ?User $user = null;
 
+    #[ORM\OneToMany(mappedBy: 'partners', targetEntity: Sporthall::class)]
+    private Collection $sporthalls;
+
     
     public function __construct()
     {
@@ -44,6 +45,7 @@ class Partner
         
         $this->permissions = new ArrayCollection();
         $this->mailings = new ArrayCollection();
+        $this->sporthalls = new ArrayCollection();
     }
 public function __toString()
      {
@@ -83,17 +85,7 @@ public function __toString()
     }
    
 
-    public function getSporthalls(): ?Sporthall
-    {
-        return $this->sporthalls;
-    }
-
-    public function setSporthalls(?Sporthall $sporthalls): self
-    {
-        $this->sporthalls = $sporthalls;
-
-        return $this;
-    }
+    
 
     /**
      * @return Collection<int, Permission>
@@ -161,6 +153,36 @@ public function __toString()
         }
 
         $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Sporthall>
+     */
+    public function getSporthalls(): Collection
+    {
+        return $this->sporthalls;
+    }
+
+    public function addSporthall(Sporthall $sporthall): self
+    {
+        if (!$this->sporthalls->contains($sporthall)) {
+            $this->sporthalls->add($sporthall);
+            $sporthall->setPartners($this);
+        }
+
+        return $this;
+    }
+
+    public function removeSporthall(Sporthall $sporthall): self
+    {
+        if ($this->sporthalls->removeElement($sporthall)) {
+            // set the owning side to null (unless already changed)
+            if ($sporthall->getPartners() === $this) {
+                $sporthall->setPartners(null);
+            }
+        }
 
         return $this;
     }

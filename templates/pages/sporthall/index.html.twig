@@ -13,6 +13,7 @@
 			<thead>
 				<tr>
 					<th>Id</th>
+					<th>Nom du franchisé</th>
 					<th>Société</th>
 					<th>Ville</th>
 					<th>Contact</th>
@@ -21,17 +22,34 @@
 				</tr>
 			</thead>
 			<tbody>
-				{% for sporthall in app.user.sporthalls %}
-					<tr>
-						<td>{{ sporthall.id }}</td>
-						<td>{{ sporthall.user.name }}</td>
-						<td>{{ sporthall.user.city }}</td>
-						<td>{{ sporthall.user.contact }}</td>
+				{# {% for sporthall in app.user.sporthalls %} #}
+				{# A mettre en place  #}
 
-						<td>{{ sporthall.isEnable ? 'Activé' : 'Désactivé' }}</td>
-						<td>
+					{% for sporthall in sporthalls %}
+						<tr>
+							<td>
+						{{ sporthall.id }}
+						</td>
+							<td>
+						{{ sporthall.partners.user.name }}
+						</td>
+
+
+							<td>
+						{{ sporthall.user.name }}
+						</td>
+							<td>
+						{{ sporthall.user.city }}
+						</td>
+							<td>
+						{{ sporthall.user.contact }}
+						</td>
+							<td>
+						{{ sporthall.isEnable ? 'Activé' : 'Désactivé' }}
+						</td>
+							<td>
 							{# <a href="{{ path('app_sporthall_show', {'id': sporthall.id}) }}">show</a> #}
-							<a href="{{ path('app_sporthall_edit', {'id': sporthall.id}) }}">Activer/Désactiver</a>
+								<a href="{{ path('app_sporthall_edit', {'id': sporthall.id}) }}"> Activer/Désactiver</a>
 						</td>
 					</tr>
 				{% else %}
