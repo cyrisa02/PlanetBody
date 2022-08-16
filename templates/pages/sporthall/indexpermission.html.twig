@@ -31,9 +31,11 @@
 							{% for permission in sporthall.permissions %}
 
 								{{ permission.name }}
-								-(
-								{{ permission.isEnable ? 'Active' : 'Désactivée' }}
-								)- /
+								-
+								<strong>(
+									{{ permission.isEnable ? 'Active' : 'Désactivée' }}
+									)</strong>
+								- /
 
 
 							{% endfor %}

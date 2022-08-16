@@ -3,6 +3,9 @@
 namespace App\Controller;
 
 use App\Entity\User;
+use App\Entity\Sporthall;
+use App\Repository\PartnerRepository;
+use App\Repository\SporthallRepository;
 use App\Repository\UserRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -16,12 +19,14 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class HomeController extends AbstractController
 {
      #[Route('/', name: 'home.index')]
-     public function index(UserRepository $userRepository): Response
+     public function index(UserRepository $userRepository, SporthallRepository $sporthallRepository, PartnerRepository $partnerRepository): Response
      {
          return $this->render('pages/home.html.twig', [
              'controller_name' => 'HomeController',
              'users' =>
             $userRepository->findAll(),
+            $sporthallRepository->findAll(),
+            $partnerRepository->findAll(),
              
             
          ]);

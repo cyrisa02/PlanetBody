@@ -2,18 +2,19 @@
 
 namespace App\Controller;
 
-use App\Entity\Partner;
 use App\Entity\User;
 use App\Form\UserType;
+use App\Entity\Partner;
 use App\Repository\UserRepository;
 use App\Repository\PartnerRepository;
+use App\Repository\SporthallRepository;
 use App\Repository\PermissionRepository;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 
 /**
@@ -61,12 +62,14 @@ class UserController extends AbstractController
     }
 
     #[Route('/{id}', name: 'app_user_show', methods: ['GET'])]
-    public function show(User $user, PermissionRepository $permissionRepository): Response
+    public function show(User $user, PermissionRepository $permissionRepository, SporthallRepository $sporthallRepository, PartnerRepository $partnerRepository): Response
     {      
         
         return $this->render('pages/user/show.html.twig', [
             'user' => $user,
             'permissions' => $permissionRepository->findAll(),
+            'sporthalls' => $sporthallRepository-> findAll(),
+            'partners' => $partnerRepository-> findAll(),
                        
         ]);
     }
