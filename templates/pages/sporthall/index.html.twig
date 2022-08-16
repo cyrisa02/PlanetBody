@@ -4,7 +4,7 @@
 {% endblock %}
 
 {% block body %}
-	{# {% if user.partner.isEnable == true %} #}
+	{# {% if app.user.sporthalls.partner.isEnable == true %} #}
 
 	<div class="container mt-4">
 		<h1>Liste des salles de sport</h1>
@@ -21,7 +21,7 @@
 				</tr>
 			</thead>
 			<tbody>
-				{% for sporthall in sporthalls %}
+				{% for sporthall in app.user.sporthalls %}
 					<tr>
 						<td>{{ sporthall.id }}</td>
 						<td>{{ sporthall.user.name }}</td>

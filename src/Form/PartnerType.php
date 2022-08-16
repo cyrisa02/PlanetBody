@@ -23,7 +23,7 @@ class PartnerType extends AbstractType
                     'minlenght' => '2',
                     'maxlenght' => '190',
                 ],
-                'label' => 'Type de contrat du franchisé',
+                'label' => 'Type de contrat du franchisé, entrez le nom du contrat, suivi du nom du franchisé',
                 'label_attr' => [
                     'class' => 'form-label  mt-4'
                 ],

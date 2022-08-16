@@ -10,11 +10,11 @@
 			<ul
 				class="navbar-nav me-auto">
 				{# <li class="nav-item">
-																																	<a class="nav-link active" href="{{ path('readme')}}">ReadMe
-																												
-																																		<span class="visually-hidden">(current)</span>
-																																	</a>
-																																</li> #}
+																																									<a class="nav-link active" href="{{ path('readme')}}">ReadMe
+																																				
+																																										<span class="visually-hidden">(current)</span>
+																																									</a>
+																																								</li> #}
 
 				<li class="nav-item">
 					<a class="nav-link active" href="{{ path('app_contact')}}">Ouvrir une franchise
@@ -134,29 +134,18 @@
 									<span class="visually-hidden">(current)</span>
 								</a>
 							</li>
-
 							<li class="nav-item dropdown">
 								<a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Structures</a>
 								<div class="dropdown-menu">
-
-
 									<a class="dropdown-item" href="{{ path('app_register_sporthall')}}">Ajout d'une Salle de sport</a>
 									<a class="dropdown-item" href="{{ path('app_sporthall_index')}}">Activer/désactiver les structures</a>
 									<a class="dropdown-item" href="{{ path('app_sporthallpermission_index')}}">Gérer les structures et les permissions</a>
-
-
 								</div>
 							</li>
-
-
 						{% endif %}
-
-
 					{% elseif is_granted('ROLE_SPORTHALL') %}
 						<li class="nav-item">
 							<a class="nav-link active" href="{{ path ('app_user_show',{'id':app.user.id})}}">Voir ses permissions
-
-
 								<span class="visually-hidden">(current)</span>
 							</a>
 						</li>
@@ -183,9 +172,9 @@
 			</ul>
 
 			{# <form class="d-flex">
-																																					<input class="form-control me-sm-2" type="text" placeholder="Search">
-																																					<button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
-																																				</form> #}
+																																											<input class="form-control me-sm-2" type="text" placeholder="Search">
+																																											<button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
+																																										</form> #}
 		</div>
 	</div>
 </nav>

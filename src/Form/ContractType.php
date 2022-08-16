@@ -21,7 +21,7 @@ class ContractType extends AbstractType
                     'minlenght' => '2',
                     'maxlenght' => '190',
                 ],
-                'label' => 'Nom du contrat',
+                'label' => 'Entrez le nom du contrat suivi du nom du franchisé',
                 'label_attr' => [
                     'class' => 'form-label  mt-4'
                 ]

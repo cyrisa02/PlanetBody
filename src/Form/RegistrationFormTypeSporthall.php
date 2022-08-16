@@ -2,10 +2,12 @@
 
 namespace App\Form;
 
+use App\Entity\Partner;
 use App\Entity\User;
 use App\Entity\Sporthall;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Validator\Constraints\IsTrue;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
@@ -28,7 +30,7 @@ class RegistrationFormTypeSporthall extends AbstractType
                 ],
                 'label' => 'Nom de la société',
                 'label_attr' => [
-                    'class' => 'form-label  mt-4'
+                    'class' => 'form-label  mt-4 '
                 ],
                 
             ])
@@ -40,10 +42,26 @@ class RegistrationFormTypeSporthall extends AbstractType
                 ],
                 'label' => 'Nom et prénom du gérant de la structure',
                 'label_attr' => [
-                    'class' => 'form-label  mt-4'
+                    'class' => 'form-label  mt-4 '
                 ],
                 
             ])
+            //->add('partners')
+             ->add('partners',EntityType::class, [
+                'class' => Partner::class,
+                'choice_label'=>function($email){
+                return $email->getContract();
+            },
+            'label' => 'Merci de confirmer le contrat avec le nom du franchisé ',
+                'attr' => [
+                    'class' => 'form-label mx-auto' 
+                ],
+                // 'placeholder'=>'Merci de confirmer le contrat avec le nom du franchisé',
+                'multiple' => false,
+                'expanded' => true,
+                'required' => false,
+            ])
+             
             ->add('email', EmailType::class, [
                 'attr' => [
                     'class' => 'form-control'
@@ -112,6 +130,7 @@ class RegistrationFormTypeSporthall extends AbstractType
                     ]),
                 ],
             ])
+           
         ;
     }
 
