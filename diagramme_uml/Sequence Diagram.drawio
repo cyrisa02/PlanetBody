@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2022-08-17T08:49:02.950Z" agent="5.0 (X11)" version="20.2.4" etag="APj5cMWdsTMZ37N0yE9f" type="github">
+<mxfile host="app.diagrams.net" modified="2022-08-17T08:50:36.686Z" agent="5.0 (X11)" version="20.2.4" etag="2Mn5HEr3tqAL0CJ4jK9y" type="github">
   <diagram id="kgpKYQtTHZ0yAKxKKP6v" name="Page-1">
     <mxGraphModel dx="1327" dy="802" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
@@ -64,8 +64,8 @@
         <mxCell id="18" value="" style="points=[];perimeter=orthogonalPerimeter;rounded=0;shadow=0;strokeWidth=1;" parent="14" vertex="1">
           <mxGeometry x="45" y="120" width="10" height="250" as="geometry" />
         </mxCell>
-        <mxCell id="19" value="Découvrir le répertoire d&#39;une formation" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
-          <mxGeometry x="245" y="10" width="230" height="30" as="geometry" />
+        <mxCell id="19" value="Trouver rapidement un partenaire en tapant les premières lettres de son nom" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
+          <mxGeometry x="145" y="10" width="430" height="30" as="geometry" />
         </mxCell>
         <mxCell id="20" value="charger fenêtre" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
           <mxGeometry x="280" y="150" width="100" height="30" as="geometry" />
