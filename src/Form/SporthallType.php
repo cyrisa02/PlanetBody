@@ -2,6 +2,7 @@
 
 namespace App\Form;
 
+use App\Entity\Partner;
 use App\Entity\User;
 use App\Entity\Sporthall;
 use Symfony\Component\Form\AbstractType;
@@ -15,7 +16,14 @@ class SporthallType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            //->add('contact')
+            ->add('partners', EntityType::class, [
+                'required' => false,
+                'class' => Partner::class,
+                'attr' => [
+                    'class' => 'select2'
+                ],
+                'label' => 'Merci de sélectionner le franchisé adéquat avec son contrat'
+            ])
             ->add('user',EntityType::class, [
                 'required' => false,
                 'class' => User::class,
