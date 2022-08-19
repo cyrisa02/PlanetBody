@@ -14,6 +14,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 
 class RegistrationFormTypePartner extends AbstractType
@@ -33,7 +34,7 @@ class RegistrationFormTypePartner extends AbstractType
                 ],
                 
             ])
-->add('contact', TextType::class, [
+            ->add('contact', TextType::class, [
                 'attr' => [
                     'class' => 'form-control',
                     'minlenght' => '2',
@@ -100,7 +101,9 @@ class RegistrationFormTypePartner extends AbstractType
             //     'placeholder'=>'Choisissez votre annonce dans la liste',
 
             // ])
-            // ->add('contract')
+             ->add('contract', TextType::class, [
+                'mapped' => false,                
+             ])
             ->add('agreeTerms', CheckboxType::class, [
                 'mapped' => false,
                 'label' => 'Etes-vous d\'accord avec notre RGPD ?',

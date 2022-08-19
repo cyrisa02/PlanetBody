@@ -57,7 +57,7 @@
 										-(
 										{{ permission.isEnable ? 'Active' : 'Désactivée' }}
 										)-
-																																																																																																																																																																/
+																																																																																																																																																																										/
 									{% endfor %}
 								</td>
 							</tr>
@@ -108,10 +108,10 @@
 									{% for permission in permissions %}
 										{{ permission.name }}
 										-(
-										<strong>{{ permission.isEnable ? 'Active' : 'Désactivée' }}</strong>
+										<b>{{ permission.isEnable ? 'Active' : 'Désactivée' }}</b>
 
 										)-
-																																																																																																																																																																							/
+																																																																																																																																																																																	/
 									{% endfor %}
 								</td>
 							</tr>
@@ -129,7 +129,7 @@
 		<a href="{{ path('home.index') }}">Retour accueil</a>
 
 		{# <a href="{{ path('app_user_edit', {'id': user.id}) }}">edit</a>
-																																																									
-																																																											{{ include('pages/user/_delete_form.html.twig') }}</div> #}
+																																																											
+																																																													{{ include('pages/user/_delete_form.html.twig') }}</div> #}
 
 	{% endblock %}

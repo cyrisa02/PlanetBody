@@ -10,11 +10,11 @@
 			<ul
 				class="navbar-nav me-auto">
 				{# <li class="nav-item">
-																																									<a class="nav-link active" href="{{ path('readme')}}">ReadMe
-																																				
-																																										<span class="visually-hidden">(current)</span>
-																																									</a>
-																																								</li> #}
+																																																																																																																																	<a class="nav-link active" href="{{ path('readme')}}">ReadMe
+																																																																																																																												
+																																																																																																																																		<span class="visually-hidden">(current)</span>
+																																																																																																																																	</a>
+																																																																																																																																</li> #}
 
 				<li class="nav-item">
 					<a class="nav-link active" href="{{ path('app_contact')}}">Ouvrir une franchise
@@ -120,7 +120,10 @@
 							</div>
 						</li>
 					{% elseif is_granted('ROLE_PARTNER')  %}
-						{% if  app.user.partners.isEnable == false %}
+						{# {% if app.user.partners.isEnable is null or app.user.partners.isEnable is not defined or app.user.partners.isEnable == false %} #}
+						{% if app.user.partners.isEnable == false %}
+
+
 							<li class="nav-item">
 								<a class="nav-link active" href="{{ path ('app_user_show',{'id':app.user.id})}}">Pas d'accès à votre compte<span class="visually-hidden">(current)</span>
 								</a>
@@ -144,13 +147,15 @@
 							</li>
 						{% endif %}
 					{% elseif is_granted('ROLE_SPORTHALL') %}
-						<li class="nav-item">
-							<a class="nav-link active" href="{{ path ('app_user_show',{'id':app.user.id})}}">Voir ses permissions
-								<span class="visually-hidden">(current)</span>
-							</a>
-						</li>
+						{% if app.user.sporthalls.isEnable == true %}
 
+							<li class="nav-item">
+								<a class="nav-link active" href="{{ path ('app_user_show',{'id':app.user.id})}}">Voir ses permissions
+									<span class="visually-hidden">(current)</span>
+								</a>
+							</li>
 
+						{% endif %}
 					{% endif %}
 
 
@@ -168,13 +173,14 @@
 					<li class="nav-item">
 						<a class="nav-link" href="{{ path('app_login') }}">Mon Espace</a>
 					</li>
+
 				{% endif %}
 			</ul>
 
 			{# <form class="d-flex">
-																																											<input class="form-control me-sm-2" type="text" placeholder="Search">
-																																											<button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
-																																										</form> #}
+																																																																																																													<input class="form-control me-sm-2" type="text" placeholder="Search">
+																																																																																																													<button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
+																																																																																																												</form> #}
 		</div>
 	</div>
 </nav>

@@ -20,9 +20,7 @@ class Partner
     #[ORM\Column(length: 190)]
     private ?string $contract = null;
 
-    #[ORM\Column]
-    private ?bool $is_enable = null;
-
+    
     
     
     
@@ -37,6 +35,11 @@ class Partner
 
     #[ORM\OneToMany(mappedBy: 'partners', targetEntity: Sporthall::class)]
     private Collection $sporthalls;
+
+    #[ORM\Column]
+    private ?bool $isEnable = false;
+
+    
 
     
     public function __construct()
@@ -72,17 +75,7 @@ public function __toString()
         return $this;
     }
 
-    public function isIsEnable(): ?bool
-    {
-        return $this->is_enable;
-    }
-
-    public function setIsEnable(bool $is_enable): self
-    {
-        $this->is_enable = $is_enable;
-
-        return $this;
-    }
+    
    
 
     
@@ -186,6 +179,20 @@ public function __toString()
 
         return $this;
     }
+
+    public function isIsEnable(): ?bool
+    {
+        return $this->isEnable;
+    }
+
+    public function setIsEnable(bool $isEnable): self
+    {
+        $this->isEnable = $isEnable;
+
+        return $this;
+    }
+
+    
 
     
     

@@ -8,7 +8,7 @@
 
 		{% if app.user %}
 			{% if is_granted('ROLE_SPORTHALL') %}
-				{% if  app.user.sporthalls.isEnable == false or  app.user.sporthalls.isEnable is not defined %}
+				{% if  app.user.sporthalls.isEnable == false  %}
 
 					<h3>Merci de votre inscription, nous traitons votre demande.</h3>
 				{% endif %}
@@ -17,6 +17,7 @@
 		{% if app.user %}
 			{% if is_granted('ROLE_PARTNER') %}
 				{% if  app.user.partners.isEnable == false %}
+
 					<h3>Merci de votre inscription, nous traitons votre demande.</h3>
 				{% endif %}
 			{% endif %}
@@ -66,10 +67,10 @@
 					<input type="search" id="search" data-search>
 				</div>
 				<div class="user-cards mt-4" data-user-cards-container style="display: flex;flex-direction: row;
-																																																																																																																																																																																																																																																																																																																																																										flex-wrap: wrap;
-																																																																																																																																																																																																																																																																																																																																									justify-content: space-between;
-																																																																																																																																																																																																																																																																																																																																									align-items: stretch;
-																																																																																																																																																																																																																																																																																																																																																						align-content: space-around;"></div>
+																																																																																																																																																																																																																																																																																																																																																																									flex-wrap: wrap;
+																																																																																																																																																																																																																																																																																																																																																								justify-content: space-between;
+																																																																																																																																																																																																																																																																																																																																																								align-items: stretch;
+																																																																																																																																																																																																																																																																																																																																																																					align-content: space-around;"></div>
 
 				<template data-user-template>
 					<div class="card border-primary mb-3" style="width:300px;">

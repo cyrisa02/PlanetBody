@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\User;
 
+use App\Entity\Partner;
 use App\Security\UserAuthenticator;
 use Doctrine\ORM\EntityManagerInterface;
 use App\Form\RegistrationFormTypePartner;
@@ -26,6 +27,17 @@ class RegistrationController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+            // incrémentation de sa clé primaire du partenaire
+            $partner = new Partner();
+            // Coàntrat est un champ texte à remplir gràace au formulaire
+            $partner->setContract($form->get('contract')->getData())
+            // à 0 parce que je veux qu'il soit à false donc 0
+                    ->setIsEnable(0);
+
+            //vient chercher la clé étrangère         
+            $user->setPartners($partner);        
+            
             // encode the plain password
             $user->setRoles(["ROLE_PARTNER"])
             
@@ -35,8 +47,9 @@ class RegistrationController extends AbstractController
                     $form->get('plainPassword')->getData()
                 )
             );
-
+            $entityManager->persist($partner);
             $entityManager->persist($user);
+
             $entityManager->flush();
             // do anything else you need here, like send an email
 

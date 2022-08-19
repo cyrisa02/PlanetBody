@@ -16,7 +16,7 @@ class Sporthall
     private ?int $id = null;    
 
     #[ORM\Column]
-    private ?bool $isEnable = null;
+    private ?bool $isEnable = false;
 
     public function __toString()
      {
