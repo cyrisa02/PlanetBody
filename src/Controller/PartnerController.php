@@ -6,6 +6,7 @@ use App\Entity\Partner;
 use App\Form\PartnerType;
 use App\Repository\UserRepository;
 use App\Repository\PartnerRepository;
+use App\Repository\SporthallRepository;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Component\HttpFoundation\Request;
@@ -20,7 +21,7 @@ class PartnerController extends AbstractController
 {
      #[IsGranted('ROLE_USER')]
     #[Route('/', name: 'app_partner_index', methods: ['GET'])]
-    public function index(PartnerRepository $partnerRepository, UserRepository $userRepository,PaginatorInterface $paginator, Request $request): Response
+    public function index(PartnerRepository $partnerRepository, UserRepository $userRepository,PaginatorInterface $paginator, Request $request, SporthallRepository $sporthallRepository): Response
     {
         $partners = $partnerRepository->findAll();
 
@@ -34,6 +35,7 @@ class PartnerController extends AbstractController
         return $this->render('pages/partner/index.html.twig', [
             'partners' => $partners,
             'users' => $userRepository->findAll(),
+            'sporthalls' => $sporthallRepository->findAll(),
         ]);
     }
     #[IsGranted('ROLE_USER')]

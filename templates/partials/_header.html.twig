@@ -10,11 +10,11 @@
 			<ul
 				class="navbar-nav me-auto">
 				{# <li class="nav-item">
-																																																																																																																																	<a class="nav-link active" href="{{ path('readme')}}">ReadMe
-																																																																																																																												
-																																																																																																																																		<span class="visually-hidden">(current)</span>
-																																																																																																																																	</a>
-																																																																																																																																</li> #}
+																																																																																																																																																																																	<a class="nav-link active" href="{{ path('readme')}}">ReadMe
+																																																																																																																																																																												
+																																																																																																																																																																																		<span class="visually-hidden">(current)</span>
+																																																																																																																																																																																	</a>
+																																																																																																																																																																																</li> #}
 
 				<li class="nav-item">
 					<a class="nav-link active" href="{{ path('app_contact')}}">Ouvrir une franchise
@@ -37,11 +37,12 @@
 							<a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Franchisés</a>
 							<div class="dropdown-menu">
 								<a class="dropdown-item" href="{{ path('app_contact_index')}}">Gérer les pré-inscriptions des partenaires</a>
-								<a class="dropdown-item" href="{{ path('app_register_partner')}}">Ajout d'un Partenaire Etape1</a>
-								<a class="dropdown-item" href="{{ path('app_user_index')}}">Ajout d'un Partenaire Etape2</a>
+								<a class="dropdown-item" href="{{ path('app_register_partner')}}">Ajout d'un Partenaire</a>
+								{# <a class="dropdown-item" href="{{ path('app_user_index')}}">Ajout d'un Partenaire Etape2</a> #}
 
 
-								<a class="dropdown-item" href="{{ path('app_partner_index')}}">Activer/désactiver les partenaires et choix contrat</a>
+								<a class="dropdown-item" href="{{ path('app_partner_index')}}">Activer/désactiver les partenaires, choix contrat, liste partenaire-structures</a>
+
 								<a class="dropdown-item" href="{{ path('app_partnerpermission_index')}}">Modifier les permissions</a>
 							</li>
 						</li>
@@ -50,8 +51,8 @@
 							<div class="dropdown-menu">
 
 
-								<a class="dropdown-item" href="{{ path('app_register_sporthall')}}">Ajout d'une Salle de sport Etape1</a>
-								<a class="dropdown-item" href="{{ path('app_usersporthall_index')}}">Ajout d'une Salle de Sport Etape2</a>
+								<a class="dropdown-item" href="{{ path('app_register_sporthall')}}">Création d'une Salle de sport Etape1/2</a>
+								<a class="dropdown-item" href="{{ path('app_sporthall_new')}}">Création d'une salle de sport (Relier la salle à son franchisé) Etape2/2</a>
 
 
 								<a class="dropdown-item" href="{{ path('app_sporthall_index')}}">Activer/désactiver les structures</a>
@@ -60,6 +61,14 @@
 
 							</div>
 						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="{{ path('app_user_index')}}">Liste des clients</a>
+
+
+							<span class="visually-hidden">(current)</span>
+						</li>
+
+
 						<li class="nav-item">
 							<a class="nav-link " href="{{ path('app_permission_index')}}">Permissions
 
@@ -88,11 +97,12 @@
 							<a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Général</a>
 							<div class="dropdown-menu">
 								<a class="dropdown-item" href="{{ path('app_contact_index')}}">Gérer les pré-inscriptions des partenaires</a>
-								<a class="dropdown-item" href="{{ path('app_register_partner')}}">Ajout d'un Partenaire Etape1</a>
-								<a class="dropdown-item" href="{{ path('app_user_index')}}">Ajout d'un Partenaire Etape2</a>
+								<a class="dropdown-item" href="{{ path('app_register_partner')}}">Ajout d'un Partenaire</a>
+								{# <a class="dropdown-item" href="{{ path('app_user_index')}}">Ajout d'un Partenaire Etape2</a> #}
 
 
-								<a class="dropdown-item" href="{{ path('app_partner_index')}}">Activer/désactiver les partenaires et choix contrat</a>
+								<a class="dropdown-item" href="{{ path('app_partner_index')}}">Activer/désactiver les partenaires, choix contrat, liste partenaire-structures
+								</a>
 								<a class="dropdown-item" href="{{ path('app_partnerpermission_index')}}">Modifier les permissions</a>
 
 
@@ -178,9 +188,9 @@
 			</ul>
 
 			{# <form class="d-flex">
-																																																																																																													<input class="form-control me-sm-2" type="text" placeholder="Search">
-																																																																																																													<button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
-																																																																																																												</form> #}
+																																																																																																																																															<input class="form-control me-sm-2" type="text" placeholder="Search">
+																																																																																																																																															<button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
+																																																																																																																																														</form> #}
 		</div>
 	</div>
 </nav>

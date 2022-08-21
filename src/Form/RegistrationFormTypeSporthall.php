@@ -47,20 +47,20 @@ class RegistrationFormTypeSporthall extends AbstractType
                 
             ])
             //->add('partners')
-             ->add('partners',EntityType::class, [
-                'class' => Partner::class,
-                'choice_label'=>function($email){
-                return $email->getContract();
-            },
-            'label' => 'Merci de confirmer le contrat avec le nom du franchisé ',
-                'attr' => [
-                    'class' => 'form-label mx-auto' 
-                ],
-                // 'placeholder'=>'Merci de confirmer le contrat avec le nom du franchisé',
-                'multiple' => false,
-                'expanded' => true,
-                'required' => false,
-            ])
+            //  ->add('partners',EntityType::class, [
+            //     'class' => Partner::class,
+            //     'choice_label'=>function($email){
+            //     return $email->getContract();
+            // },
+            // 'label' => 'Merci de confirmer le contrat avec le nom du franchisé ',
+            //     'attr' => [
+            //         'class' => 'form-label mx-auto' 
+            //     ],
+            //     // 'placeholder'=>'Merci de confirmer le contrat avec le nom du franchisé',
+            //     'multiple' => false,
+            //     'expanded' => true,
+            //     'required' => false,
+            // ])
              
             ->add('email', EmailType::class, [
                 'attr' => [

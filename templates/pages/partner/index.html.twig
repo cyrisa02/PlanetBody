@@ -5,7 +5,10 @@
 
 {% block body %}
 	<div class="container mt-4">
-		<h1>Liste des Franchisés</h1>
+		<h1>Liste des Franchisés avec leur structures et choix du contrat</h1>
+		<h3>Dans cette vue, vous pouvez désactiver/activer un franchisé.</h3>
+		<h3>Vous pouvez lister les structures par rapport à leur franchisé.</h3>
+
 
 		<table class="table">
 			<thead>
@@ -17,6 +20,8 @@
 					<th>Contrat</th>
 					<th>Statut</th>
 					<th>Actions et Contrats</th>
+					<th>Structures</th>
+
 				</tr>
 			</thead>
 			<tbody>
@@ -33,11 +38,21 @@
 						<td>{{ partner.user.city }}</td>
 						<td>{{ partner.user.contact }}</td>
 						<td>{{ partner.contract }}</td>
+
+
 						<td>{{ partner.isEnable ? 'Actif' : 'Désactivé' }}</td>
 						<td>
 							{# <a href="{{ path('app_partner_show', {'id': partner.id}) }}">show</a> #}
 							<a href="{{ path('app_partner_edit', {'id': partner.id}) }}">Activer/Désactiver</a>
 						</td>
+						{% for sporthall in partner.sporthalls %}
+							<td>{{ sporthall.user.name }}</td>
+						{% else %}
+
+							<td>Pas de structure</td>
+
+
+						{% endfor %}
 
 
 					</tr>

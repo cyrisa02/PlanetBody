@@ -57,7 +57,7 @@
 										-(
 										{{ permission.isEnable ? 'Active' : 'Désactivée' }}
 										)-
-																																																																																																																																																																										/
+																																																																																																																																																																																																																																																																																																																																										/
 									{% endfor %}
 								</td>
 							</tr>
@@ -110,11 +110,23 @@
 										-(
 										<b>{{ permission.isEnable ? 'Active' : 'Désactivée' }}</b>
 
-										)-
-																																																																																																																																																																																	/
+										)- /
 									{% endfor %}
 								</td>
 							</tr>
+							<tr>
+								<th>Structures</th>
+								<td>
+									{% for sporthall in user.partners.sporthalls %}
+										{{ sporthall.user.name }}
+										-(
+										<b>{{ sporthall.isEnable ? 'Active' : 'Désactivée' }}</b>
+
+										)- /
+									{% endfor %}
+								</td>
+							</tr>
+
 						</tbody>
 					</table>
 				{% endif %}
@@ -129,7 +141,7 @@
 		<a href="{{ path('home.index') }}">Retour accueil</a>
 
 		{# <a href="{{ path('app_user_edit', {'id': user.id}) }}">edit</a>
-																																																											
-																																																													{{ include('pages/user/_delete_form.html.twig') }}</div> #}
+																																																																																											
+																																																																																													{{ include('pages/user/_delete_form.html.twig') }}</div> #}
 
 	{% endblock %}

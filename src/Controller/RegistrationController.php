@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\User;
 
 use App\Entity\Partner;
+use App\Entity\Sporthall;
 use App\Security\UserAuthenticator;
 use Doctrine\ORM\EntityManagerInterface;
 use App\Form\RegistrationFormTypePartner;
@@ -35,7 +36,7 @@ class RegistrationController extends AbstractController
             // à 0 parce que je veux qu'il soit à false donc 0
                     ->setIsEnable(0);
 
-            //vient chercher la clé étrangère         
+            //vient chercher la clé étrangère  ne pas oublier de persister       
             $user->setPartners($partner);        
             
             // encode the plain password
@@ -47,6 +48,8 @@ class RegistrationController extends AbstractController
                     $form->get('plainPassword')->getData()
                 )
             );
+
+            //Important pour la relation OneToOne - Héritage
             $entityManager->persist($partner);
             $entityManager->persist($user);
 
@@ -73,6 +76,16 @@ class RegistrationController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+            // incrémentation de sa clé primaire du partenaire
+            $sporthall = new Sporthall();
+            // Coàntrat est un champ texte à remplir gràace au formulaire
+            $sporthall ->setIsEnable(0);
+            // à 0 parce que je veux qu'il soit à false donc 0
+                   
+
+            //vient chercher la clé étrangère       ne pas oublier de persister   
+            $user->setSporthalls($sporthall);   
              $user->setRoles(["ROLE_SPORTHALL"])
             // encode the plain password
             ->setPassword(
@@ -81,7 +94,8 @@ class RegistrationController extends AbstractController
                     $form->get('plainPassword')->getData()
                 )
             );
-
+            //Important pour la relation OneToOne - Héritage
+            $entityManager->persist($sporthall);
             $entityManager->persist($user);
             $entityManager->flush();
             // do anything else you need here, like send an email

@@ -6,11 +6,12 @@
 {% block body %}
 
 
-	<h1>Inscription d'une salle de sport par le franchisé ou l'équipe Marketing PlanetBody</h1>
+	<h1>Inscription d'une salle de sport par le franchisé ou l'équipe Marketing PlanetBody Etape 1</h1>
+	<h2>L'inscription d'une salle de sport se réalise en deux étapes. Dans ce formulaire, les coordonnées et le mot de passe.</h2>
 
 	{{ form_start(registrationForm) }}
 	{{ form_row(registrationForm.name) }}
-	{{ form_row(registrationForm.partners) }}
+	{# {{ form_row(registrationForm.partners) }} #}
 
 	{{ form_row(registrationForm.contact) }}
 

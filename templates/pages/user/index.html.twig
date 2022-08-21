@@ -9,8 +9,8 @@
 	<table class="table">
 		<thead>
 			<tr>
-				<th>Id User</th>
-				<th>CONTRAT A RELIER</th>
+				<th>N°</th>
+				<th>CONTRAT</th>
 				<th>Email</th>
 				<th>Statut
 				</th>
@@ -43,13 +43,13 @@
 					<td>{{ user.createdAt ? user.createdAt|date('d-m-Y ') : '' }}</td>
 					<td>{{ user.contact }}</td>
 					{# {% for partner in user.partners %}
-																																																																							<td>{{ partner.contract }}</td>
-																																																																						{% endfor %} #}
+																																																																																						<td>{{ partner.contract }}</td>
+																																																																																					{% endfor %} #}
 
 					{# <td>
-																																																																																											<a href="{{ path('app_user_show', {'id': user.id}) }}">show</a>
-																																																																																											<a href="{{ path('app_user_edit', {'id': user.id}) }}">edit</a>
-																																																																																										</td> #}
+																																																																																																										<a href="{{ path('app_user_show', {'id': user.id}) }}">show</a>
+																																																																																																										<a href="{{ path('app_user_edit', {'id': user.id}) }}">edit</a>
+																																																																																																									</td> #}
 				</tr>
 
 			{% else %}
@@ -64,9 +64,9 @@
 <div class="navigation d-flex justify-content-center mt-4">
 	{{ knp_pagination_render(users) }}
 </div>
-<div class="container mt-4">
+{# <div class="container mt-4">
 	<h2>Important</h2>
 	<h3>Pour respecter la marche à suivre</h3>
 	<p>Il faut relier le contrat à la bonne adresse mail du franchisé.</p>
 </div>
-<a class="btn btn-primary btn-lg mt-4" href="{{ path('app_partner_new') }}">Cliquer ici! Pour un franchisé</a></div>{% endblock %}
+<a class="btn btn-primary btn-lg mt-4" href="{{ path('app_partner_new') }}">Cliquer ici! Pour un franchisé</a> #}</div>{% endblock %}
