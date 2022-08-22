@@ -15,6 +15,13 @@
 				{% if  user.sporthalls.isEnable == false or app.user.sporthalls.isEnable is not defined %}
 
 					<h3>Merci de votre inscription, nous traitons votre demande.</h3>
+
+
+					<div class="mb-4">
+						<a class="btn btn-secondary btn-lg mt-4" href="{{ path('app_logout') }}">Me déconnecter</a>
+					</div>
+
+
 				{% endif %}
 				{% if user.sporthalls.isEnable == true %}
 					<table class="table">
@@ -57,7 +64,7 @@
 										-(
 										{{ permission.isEnable ? 'Active' : 'Désactivée' }}
 										)-
-																																																																																																																																																																																																																																																																																																																																										/
+																																																																																																																																																																																																																																																																																																																																																																																																																																																								/
 									{% endfor %}
 								</td>
 							</tr>
@@ -68,6 +75,12 @@
 			{% if is_granted('ROLE_PARTNER') %}
 				{% if  user.partners.isEnable == false %}
 					<h3>Merci de votre inscription, nous traitons votre demande.</h3>
+
+					<div class="mb-4">
+						<a class="btn btn-secondary btn-lg mt-4" href="{{ path('app_logout') }}">Me déconnecter</a>
+					</div>
+
+
 				{% endif %}
 				{% if user.partners.isEnable == true %}
 					<table class="table">
@@ -141,7 +154,7 @@
 		<a href="{{ path('home.index') }}">Retour accueil</a>
 
 		{# <a href="{{ path('app_user_edit', {'id': user.id}) }}">edit</a>
-																																																																																											
-																																																																																													{{ include('pages/user/_delete_form.html.twig') }}</div> #}
+																																																																																																																	
+																																																																																																																			{{ include('pages/user/_delete_form.html.twig') }}</div> #}
 
 	{% endblock %}

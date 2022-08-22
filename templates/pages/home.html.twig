@@ -11,6 +11,11 @@
 				{% if  app.user.sporthalls.isEnable == false  %}
 
 					<h3>Merci de votre inscription, nous traitons votre demande.</h3>
+
+					<div class="mb-4">
+						<a class="btn btn-secondary btn-lg mt-4" href="{{ path('app_logout') }}">Me déconnecter</a>
+					</div>
+
 				{% endif %}
 			{% endif %}
 		{% endif %}
@@ -19,6 +24,11 @@
 				{% if  app.user.partners.isEnable == false %}
 
 					<h3>Merci de votre inscription, nous traitons votre demande.</h3>
+
+					<div class="mb-4">
+						<a class="btn btn-secondary btn-lg mt-4" href="{{ path('app_logout') }}">Me déconnecter</a>
+					</div>
+
 				{% endif %}
 			{% endif %}
 		{% endif %}
@@ -67,10 +77,10 @@
 					<input type="search" id="search" data-search>
 				</div>
 				<div class="user-cards mt-4" data-user-cards-container style="display: flex;flex-direction: row;
-																																																																																																																																																																																																																																																																																																																																																																									flex-wrap: wrap;
-																																																																																																																																																																																																																																																																																																																																																								justify-content: space-between;
-																																																																																																																																																																																																																																																																																																																																																								align-items: stretch;
-																																																																																																																																																																																																																																																																																																																																																																					align-content: space-around;"></div>
+																																																																																																																																																																																																																																																																																																																																																																																			flex-wrap: wrap;
+																																																																																																																																																																																																																																																																																																																																																																		justify-content: space-between;
+																																																																																																																																																																																																																																																																																																																																																																		align-items: stretch;
+																																																																																																																																																																																																																																																																																																																																																																															align-content: space-around;"></div>
 
 				<template data-user-template>
 					<div class="card border-primary mb-3" style="width:300px;">

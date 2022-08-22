@@ -10,11 +10,11 @@
 			<ul
 				class="navbar-nav me-auto">
 				{# <li class="nav-item">
-																																																																																																																																																																																	<a class="nav-link active" href="{{ path('readme')}}">ReadMe
-																																																																																																																																																																												
-																																																																																																																																																																																		<span class="visually-hidden">(current)</span>
-																																																																																																																																																																																	</a>
-																																																																																																																																																																																</li> #}
+																																																																																																																																																																																																																																													<a class="nav-link active" href="{{ path('readme')}}">ReadMe
+																																																																																																																																																																																																																																								
+																																																																																																																																																																																																																																														<span class="visually-hidden">(current)</span>
+																																																																																																																																																																																																																																													</a>
+																																																																																																																																																																																																																																												</li> #}
 
 				<li class="nav-item">
 					<a class="nav-link active" href="{{ path('app_contact')}}">Ouvrir une franchise
@@ -98,7 +98,6 @@
 							<div class="dropdown-menu">
 								<a class="dropdown-item" href="{{ path('app_contact_index')}}">Gérer les pré-inscriptions des partenaires</a>
 								<a class="dropdown-item" href="{{ path('app_register_partner')}}">Ajout d'un Partenaire</a>
-								{# <a class="dropdown-item" href="{{ path('app_user_index')}}">Ajout d'un Partenaire Etape2</a> #}
 
 
 								<a class="dropdown-item" href="{{ path('app_partner_index')}}">Activer/désactiver les partenaires, choix contrat, liste partenaire-structures
@@ -120,7 +119,7 @@
 								<div class="dropdown-divider"></div>
 
 								<a class="dropdown-item" href="{{ path('app_register_sporthall')}}">Ajout d'une Salle de sport Etape1</a>
-								<a class="dropdown-item" href="{{ path('app_usersporthall_index')}}">Ajout d'une Salle de Sport Etape2</a>
+								<a class="dropdown-item" href="{{ path('app_sporthall_new')}}">Ajout d'une Salle de Sport Etape2</a>
 
 
 								<a class="dropdown-item" href="{{ path('app_sporthall_index')}}">Activer/désactiver les structures</a>
@@ -130,7 +129,7 @@
 							</div>
 						</li>
 					{% elseif is_granted('ROLE_PARTNER')  %}
-						{# {% if app.user.partners.isEnable is null or app.user.partners.isEnable is not defined or app.user.partners.isEnable == false %} #}
+
 						{% if app.user.partners.isEnable == false %}
 
 
@@ -139,9 +138,14 @@
 								</a>
 							</li>
 
+							<li class="nav-item">
+								<a class="nav-link" href="{{ path('app_logout') }}">Me déconnecter</a>
+							</li>
+
+
 						{% else %}
 							<li class="nav-item">
-								<a class="nav-link active" href="{{ path ('app_user_show',{'id':app.user.id})}}">Voir ses permissions
+								<a class="nav-link active" href="{{ path ('app_user_show',{'id':app.user.id})}}">Voir ses permissions et ses structures avec leur statut
 
 
 									<span class="visually-hidden">(current)</span>
@@ -150,8 +154,11 @@
 							<li class="nav-item dropdown">
 								<a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Structures</a>
 								<div class="dropdown-menu">
-									<a class="dropdown-item" href="{{ path('app_register_sporthall')}}">Ajout d'une Salle de sport</a>
-									<a class="dropdown-item" href="{{ path('app_sporthall_index')}}">Activer/désactiver les structures</a>
+									<a class="dropdown-item" href="{{ path('app_register_sporthall')}}">Ajout d'une Salle de sport Etape 1/2</a>
+									<a class="dropdown-item" href="{{ path('app_sporthall_new')}}">Création d'une salle de sport (Relier la salle à son franchisé) Etape2/2</a>
+
+									<a class="dropdown-item" href="{{ path('app_ownsporthall_index')}}">Activer/désactiver ses structures</a>
+									{# <a class="dropdown-item" href="{{ path('app_sporthall_index')}}">Activer/désactiver les structures</a> #}
 									<a class="dropdown-item" href="{{ path('app_sporthallpermission_index')}}">Gérer les structures et les permissions</a>
 								</div>
 							</li>
@@ -188,9 +195,9 @@
 			</ul>
 
 			{# <form class="d-flex">
-																																																																																																																																															<input class="form-control me-sm-2" type="text" placeholder="Search">
-																																																																																																																																															<button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
-																																																																																																																																														</form> #}
+																																																																																																																																																																																												<input class="form-control me-sm-2" type="text" placeholder="Search">
+																																																																																																																																																																																												<button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
+																																																																																																																																																																																											</form> #}
 		</div>
 	</div>
 </nav>

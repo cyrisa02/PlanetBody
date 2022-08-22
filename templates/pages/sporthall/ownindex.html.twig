@@ -1,13 +1,13 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Liste des structures
+{% block title %}Liste de mes structures
 {% endblock %}
 
 {% block body %}
 	{# {% if app.user.sporthalls.partner.isEnable == true %} #}
 
 	<div class="container mt-4">
-		<h1>Liste des salles de sport</h1>
+		<h1>Liste de mes salles de sport</h1>
 
 		<table class="table">
 			<thead>
@@ -22,37 +22,40 @@
 				</tr>
 			</thead>
 			<tbody>
-				{# {% for sporthall in app.user.sporthalls %} #}
-				{# A mettre en place  #}
 
-					{% for sporthall in sporthalls %}
+
+				{% for sporthall in sporthalls %}
+					{% if sporthall.partners.user.name == app.user.partners.user.name %}
+
 						<tr>
 							<td>
-						{{ sporthall.id }}
-						</td>
+								{{ sporthall.id }}
+							</td>
 							<td>
-						{{ sporthall.partners.user.name }}
-						</td>
+								{{ sporthall.partners.user.name  }}
+							</td>
 
 
 							<td>
-						{{ sporthall.user.name }}
-						</td>
+								{{ sporthall.user.name }}
+							</td>
 							<td>
-						{{ sporthall.user.city }}
-						</td>
+								{{ sporthall.user.city }}
+							</td>
 							<td>
-						{{ sporthall.user.contact }}
-						</td>
+								{{ sporthall.user.contact }}
+							</td>
 							<td>
-						{{ sporthall.isEnable ? 'Activé' : 'Désactivé' }}
-						</td>
+								{{ sporthall.isEnable ? 'Activé' : 'Désactivé' }}
+							</td>
 							<td>
-								{% if sporthall.partners.user.name == app.user.partners.user.name or is_granted('ROLE_ADMIN') %}
-									<a href="{{ path('app_sporthall_edit', {'id': sporthall.id}) }}"> Activer/Désactiver</a>
-							{% endif %}
-						</td>
-					</tr>
+								{# <a href="{{ path('app_sporthall_show', {'id': sporthall.id}) }}">show</a> #}
+								<a href="{{ path('app_sporthall_edit', {'id': sporthall.id}) }}">
+									Activer/Désactiver</a>
+							</td>
+						</tr>
+					{% endif %}
+
 				{% else %}
 					<tr>
 						<td colspan="4">Aucun enregistrement</td>
@@ -67,5 +70,5 @@
 		</div>
 
 	</div>
-	{# {% endif %} #}
+
 {% endblock %}
