@@ -1,0 +1,48 @@
+h1 {
+    font-family: 'Bebas';
+}
+
+h2 {
+    font-family: 'Bebas';
+}
+
+h3 {
+    font-family: 'Bebas';
+}
+
+/*Création des boutons filtre*/
+#filters{
+    display: flex;/*met les boutons côte à côte*/
+    gap: 75px;/*espacement*/
+   
+}
+
+#filters div{
+    margin-top:15px;
+    margin-bottom: 10px;
+    border: 2px solid black;
+    padding: 10px;
+    border-radius: 20px;
+    cursor: pointer;/*affiche un pointeur main*/
+   
+}
+
+#gallery{
+    display: flex;/*les cartes sont les unes à côtés des autres*/
+    flex-wrap: wrap;   /* pour aller à la ligne quand il y en a trop*/ 
+    justify-content: center;/*pour centrer verticalement*/
+    align-items: center;/*pour centrer horizontalement*/
+    margin: auto;/*le bloc va bien se centrer*/
+    }
+
+#gallery .active{
+    width: 30%;
+    padding: 5px;
+    transition: width .3s;/* transition sur la largeur quand elle change de statut*/
+}
+
+#gallery .inactive{
+    width: 0;
+    padding: 0;
+    transition: width .3s;/* transition sur la largeur*/
+}

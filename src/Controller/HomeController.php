@@ -25,8 +25,8 @@ class HomeController extends AbstractController
              'controller_name' => 'HomeController',
              'users' =>
             $userRepository->findAll(),
-            $sporthallRepository->findAll(),
-            $partnerRepository->findAll(),
+            'sporthalls' => $sporthallRepository->findAll(),
+           'partners' => $partnerRepository->findAll(),
              
             
          ]);

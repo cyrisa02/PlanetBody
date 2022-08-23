@@ -28,3 +28,37 @@ searchInput.addEventListener("input", e => {
          return { name: user.name, city: user.city,  element: card}
          })
  })
+
+ // Filter for enable Partner
+ //C'est en sécurité si ce script doit être déplacé, ou voir l'attribut defer pour afficher les cartes
+ window.onload= () => {
+
+    //pour gérer les interactions, je vais chercher tous les filtres qui sont des balises div
+    let filters =  document.querySelectorAll("#filters div");
+
+    //Je boucle sur ces div et j'écoute le clic en uitilsant une nouvelle variable filter
+
+    for(let filter of filters){
+        //sur chaque filtre de filters j'ecoute avec addEventlistener le clic
+        filter.addEventListener("click", function(){
+            // avec function je peux utiliser la variable this pour me référer à filter
+            // Je récupère le nom du filtre (=tag)
+            // Je dois relier dans le HTML les filtres aux cartes avec les dataset
+            let tag = this.id;
+            //Comparer les dataset
+            //Je vais cherhcer toutes les cartes
+            let partners = document.querySelectorAll("#gallery partner");
+
+            //Les cartes sont dans un tableau que je vais boucler
+            for(let partner of partners){
+                //pour chaque carte je vais dans sa classe liste et je la mets inactive
+                partner.classList.replace("active", "inactive");
+                //si le tag est dans le dataset, je vais dans sa classeList et je remplace pas active
+                // attention on a besoin du || pour afficher l'ensembles des cartes
+                if(tag in partner.dataset || tag === "all"){
+                    partner.classList.replace("inactive", "active"); 
+                }
+            }
+        });
+    }
+ }

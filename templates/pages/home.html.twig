@@ -4,8 +4,8 @@
 {% endblock %}
 
 {% block body %}
-	<div class="container mt-4">
 
+	<div class="container mt-4">
 		{% if app.user %}
 			{% if is_granted('ROLE_SPORTHALL') %}
 				{% if  app.user.sporthalls.isEnable == false  %}
@@ -15,7 +15,6 @@
 					<div class="mb-4">
 						<a class="btn btn-secondary btn-lg mt-4" href="{{ path('app_logout') }}">Me déconnecter</a>
 					</div>
-
 				{% endif %}
 			{% endif %}
 		{% endif %}
@@ -76,56 +75,67 @@
 					<label for="search">Recherchez votre partenaire</label>
 					<input type="search" id="search" data-search>
 				</div>
-				<div class="user-cards mt-4" data-user-cards-container style="display: flex;flex-direction: row;
-																																																																																																																																																																																																																																																																																																																																																																																			flex-wrap: wrap;
-																																																																																																																																																																																																																																																																																																																																																																		justify-content: space-between;
-																																																																																																																																																																																																																																																																																																																																																																		align-items: stretch;
-																																																																																																																																																																																																																																																																																																																																																																															align-content: space-around;"></div>
+				<div class="user-cards mt-4" data-user-cards-container style="display: flex;flex-direction: row;flex-wrap: wrap;justify-content: space-between;	align-items: stretch;align-content: space-around;"></div>
 
+				{# The template is for the search-bar #}
 				<template data-user-template>
 					<div class="card border-primary mb-3" style="width:300px;">
 						<div class="card-header bg-secondary" data-header></div>
-
 						<div class="card-body bg-light" data-body2></div>
-
-
 						<div class="card-body bg-light" data-body></div>
-
-
 						<a class="btn btn-primary btn-sm row my-2 ms-2  " href="{{path('readme')}}" role="button" style="width:100px;"></a>
 					</div>
 				</template>
 			</div>
-
-
 			<hr class="my-4">
-			<h2>Version avec Symfony pour l'exemple</h2>
-			<div class="container mt-4">
-				<div class="row">
-					{% for user in users %}
-						<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 mb-3">
-							<article class="card border-primary mb-3 " style="max-width: 20rem; ">
+			<h2>Recherche avec des filtres des partenaires actifs ou désactivés</h2>
+
+			{# This section is for the filter isEnable with Partners #}
+			{# cette section permet de créer les boutons filtres #}
+			<section
+				id="filters">
+				{# Je crée des div avec un id pour les appeler plus tard dans le js #}
+				<div id="all">Tout</div>
+				<div id="enable">Franchisés actifs</div>
+				<div id="notenable">Franchisés désactivés</div>
+			</section>
+			{# Création de la gallerie de cartes #}
+			<div id="gallery ">
+				<div class="container mt-4 ">
+					<div
+						class="row ">
+						{# Je déclare active comme variable grâce à TWIG #}
+						{% set active = "" %}
+						{% for user in users %}
+							{% if user.partners and user.partners.isEnable  %}
+								{% set active = active %}
+							{% endif %}
+							{# Mise en place de la classe active avec le CSS et inactive #}
+							<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 mb-3 {{ active == true ? 'active' : 'inactive' }}" data-~ {{ active == true ? 'enable' : 'notenable' }} id="partner">
+
+								<article class="card border-primary mb-3 " style="max-width: 20rem; ">
+									<div class="card-header bg-secondary">
+										<h1>Partenaire N°:
+											{{ user.id}}
+										</h1>
+									</div>
+									<div class="card-body bg-light">
+										<h4 class="card-title">{{ user.name}}
+										</h4>
+										<p class="card-text">{{ user.address }}</p>
+										<p class="card-text">{{ user.zipcode }}</p>
+										<p class="card-text">{{ user.city }}</p>
+										<p class="card-text">
+											{% if user.partners and user.partners.isEnable %}Actif
+											{% else %}
+												Inactif
+											{% endif %}
 
 
-								<div class="card-header bg-secondary">
+										</p>
+										{# {{ sporthall.isEnable ? 'Activé' : 'Désactivé' }} #}
 
-									<h1>Partenaire N°:
-										{{ user.id}}
-									</h1>
-
-
-									{# <iframe width="250" height="100" src="{{ formation.image }} " title="formation" frameborder="0" allowfullscreen></iframe> #}
-
-
-								</div>
-								<div class="card-body bg-light">
-
-									<h4 class="card-title">{{ user.name}}
-									</h4>
-									<p class="card-text">{{ user.address }}</p>
-									<p class="card-text">{{ user.zipcode }}</p>
-									<p class="card-text">{{ user.city }}</p>
-									{# <a class="btn btn-primary btn-lg row my-2" href="{{ path ('app_user_show',{'id':user.id})}}" role="button">Sélectionner</a> #}
+									</p>
 								</div>
 							</article>
 						</div>
@@ -133,8 +143,40 @@
 					{% endfor %}
 				</div>
 			</div>
+
+
 		</div>
 
+		<hr class="my-4">
+		<h2>Version avec Symfony pour l'exemple, autre présentation</h2>
+		<div class="container mt-4">
+			<div class="row">
+				{% for user in users %}
+					<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 mb-3">
+						<article class="card border-primary mb-3 " style="max-width: 20rem; ">
+							<div class="card-header bg-secondary">
 
+								<h1>Partenaire N°:
+									{{ user.id}}
+								</h1>
+
+							</div>
+							<div class="card-body bg-light">
+
+								<h4 class="card-title">{{ user.name}}
+								</h4>
+								<p class="card-text">{{ user.address }}</p>
+								<p class="card-text">{{ user.zipcode }}</p>
+								<p class="card-text">{{ user.city }}</p>
+								{# <a class="btn btn-primary btn-lg row my-2" href="{{ path ('app_user_show',{'id':user.id})}}" role="button">Sélectionner</a> #}
+							</div>
+						</article>
+					</div>
+
+				{% endfor %}
+			</div>
+		</div>
 	</div>
-</div>{% endblock %}
+
+
+</div></div>{% endblock %}
