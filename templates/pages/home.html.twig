@@ -56,7 +56,10 @@
 				<a href=" {{ path('app_permission_index')}} ">nos prestations</a>. Vous bénéfierez de tous les avantages de nos franchisés:</h2>
 
 
-			<a class="btn btn-primary btn-lg" href="{{ path('app_contact')}}" role="button">Ouvrir un club sous franchise</a>
+			<a class="btn btn-primary btn-lg" href="{{ path('app_contact')}}" role="button">
+				<strong>Ouvrir un club sous franchise</strong>
+			</a>
+
 
 			<a class="btn btn-primary btn-lg" href="{{ path('app_claim')}}" role="button">Demande d'informations</a>
 
@@ -147,35 +150,7 @@
 
 		</div>
 
-		<hr class="my-4">
-		<h2>Version avec Symfony pour l'exemple, autre présentation</h2>
-		<div class="container mt-4">
-			<div class="row">
-				{% for user in users %}
-					<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 mb-3">
-						<article class="card border-primary mb-3 " style="max-width: 20rem; ">
-							<div class="card-header bg-secondary">
 
-								<h1>Partenaire N°:
-									{{ user.id}}
-								</h1>
-
-							</div>
-							<div class="card-body bg-light">
-
-								<h4 class="card-title">{{ user.name}}
-								</h4>
-								<p class="card-text">{{ user.address }}</p>
-								<p class="card-text">{{ user.zipcode }}</p>
-								<p class="card-text">{{ user.city }}</p>
-								{# <a class="btn btn-primary btn-lg row my-2" href="{{ path ('app_user_show',{'id':user.id})}}" role="button">Sélectionner</a> #}
-							</div>
-						</article>
-					</div>
-
-				{% endfor %}
-			</div>
-		</div>
 	</div>
 
 

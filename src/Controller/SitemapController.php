@@ -9,15 +9,12 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class SitemapController extends AbstractController
 {
-    #[Route('/sitemap.xml', name: 'app_sitemap', defaults: ['_format'=>'xml'])]
-   
+    #[Route('/sitemap.xml', name: 'app_sitemap', defaults: ['_format'=>'xml'])]   
     public function index(Request $request): Response
     {
         // On récuère le hostname grâce à la request et à getScheme
         $hostname = $request->getSchemeAndHttpHost();
-
         // dd($hostname);
-
         // Création d'un tableau pour stocker les URL du site
         $urls= [];
         // J'envoie les URL dans ce tableau, on va pousser les données
@@ -29,11 +26,7 @@ class SitemapController extends AbstractController
         $urls[] = ['loc' => $this->generateUrl('app_contact')];
         $urls[] = ['loc' => $this->generateUrl('app_showpermission_index')];
         $urls[] = ['loc' => $this->generateUrl('app_login')];
-
-
-
         // dd($urls);
-
         //Formatage de ces données en xml
         // Créer une réponse avec des paramètres : twig, url, hostname, statut code 200
         $response = new Response(
@@ -45,7 +38,6 @@ class SitemapController extends AbstractController
         );
         //Modification de l'en-tête, le content type
         $response->headers->set('Content-type', 'text/xml' );
-
         return $response;
     }
 }
