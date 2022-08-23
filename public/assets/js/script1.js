@@ -32,12 +32,9 @@ searchInput.addEventListener("input", e => {
  // Filter for enable Partner
  //C'est en sécurité si ce script doit être déplacé, ou voir l'attribut defer pour afficher les cartes
  window.onload= () => {
-
     //pour gérer les interactions, je vais chercher tous les filtres qui sont des balises div
     let filters =  document.querySelectorAll("#filters div");
-
     //Je boucle sur ces div et j'écoute le clic en uitilsant une nouvelle variable filter
-
     for(let filter of filters){
         //sur chaque filtre de filters j'ecoute avec addEventlistener le clic
         filter.addEventListener("click", function(){
@@ -47,7 +44,7 @@ searchInput.addEventListener("input", e => {
             let tag = this.id;
             //Comparer les dataset
             //Je vais cherhcer toutes les cartes
-            let partners = document.querySelectorAll("#gallery partner");
+            let partners = document.querySelectorAll(".partner");
 
             //Les cartes sont dans un tableau que je vais boucler
             for(let partner of partners){

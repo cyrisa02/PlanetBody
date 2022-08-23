@@ -100,7 +100,8 @@
 				{# Je crée des div avec un id pour les appeler plus tard dans le js #}
 				<div id="all">Tout</div>
 				<div id="enable">Franchisés actifs</div>
-				<div id="notenable">Franchisés désactivés</div>
+				<div id="disable">Franchisés désactivés</div>
+
 			</section>
 			{# Création de la gallerie de cartes #}
 			<div id="gallery ">
@@ -108,50 +109,44 @@
 					<div
 						class="row ">
 						{# Je déclare active comme variable grâce à TWIG #}
-						{% set active = "" %}
-						{% for user in users %}
-							{% if user.partners and user.partners.isEnable  %}
-								{% set active = active %}
+
+						{% for partner in partners %}
+							{% set active = "" %}
+							{% if partner.isEnable  %}
+								{% set active = true %}
 							{% endif %}
 							{# Mise en place de la classe active avec le CSS et inactive #}
-							<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 mb-3 {{ active == true ? 'active' : 'inactive' }}" data-~ {{ active == true ? 'enable' : 'notenable' }} id="partner">
+							<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 mb-3 {{ active == true ? 'active' : '' }} partner">
 
 								<article class="card border-primary mb-3 " style="max-width: 20rem; ">
 									<div class="card-header bg-secondary">
 										<h1>Partenaire N°:
-											{{ user.id}}
+											{{ partner.user.id}}
 										</h1>
 									</div>
 									<div class="card-body bg-light">
-										<h4 class="card-title">{{ user.name}}
+										<h4 class="card-title">{{ partner.user.name}}
 										</h4>
-										<p class="card-text">{{ user.address }}</p>
-										<p class="card-text">{{ user.zipcode }}</p>
-										<p class="card-text">{{ user.city }}</p>
+										<p class="card-text">{{ partner.user.address }}</p>
+										<p class="card-text">{{  partner.user.zipcode }}</p>
+										<p class="card-text">{{  partner.user.city }}</p>
 										<p class="card-text">
-											{% if user.partners and user.partners.isEnable %}Actif
+											{% if partner.isEnable %}Actif
 											{% else %}
 												Inactif
 											{% endif %}
-
-
 										</p>
-										{# {{ sporthall.isEnable ? 'Activé' : 'Désactivé' }} #}
+									</div>
+								</article>
+							</div>
 
-									</p>
-								</div>
-							</article>
-						</div>
-
-					{% endfor %}
+						{% endfor %}
+					</div>
 				</div>
 			</div>
-
-
 		</div>
 
 
 	</div>
-
-
-</div></div>{% endblock %}
+</div>
+<script src="{{ asset('assets/js/script2.js') }}"></script>{% endblock %}
