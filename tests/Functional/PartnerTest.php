@@ -30,8 +30,8 @@ class PartnerTest extends WebTestCase
 
         // Gérer le formulaire
         $form = $crawler->filter("form[name=registration_form_type_partner]")->form([
-            'registration_form_type_partner[name]' => "Societé",
-            'registration_form_type_partner[contact]' => "John DOe",
+            'registration_form_type_partner[name]' => "Société",
+            'registration_form_type_partner[contact]' => "John Doe",
             'registration_form_type_partner[contract]' => "Blue-Société",
             'registration_form_type_partner[address]' => "27 rue des Lilas",
             'registration_form_type_partner[zipcode]' => "02200",
@@ -39,7 +39,6 @@ class PartnerTest extends WebTestCase
             'registration_form_type_partner[email]' => "johndoe@gmail.com",
             'registration_form_type_partner[plainPassword]' => "azertyui",
             'registration_form_type_partner[agreeTerms]' => True,
-
         ]);
         $client->submit($form);
 
@@ -52,7 +51,7 @@ class PartnerTest extends WebTestCase
         // Gérer l'alert box
         $this->assertSelectorTextContains('div.alert-success', 'Votre demande a été enregistrée avec succès');
 
-        $this->assertRouteSame('home.index');
+        $this->assertRouteSame('home_index');
 
         // Bien vérifier que le token du formulaire est bien dans les balises form grâce à l'insspecteur du navigateur        
     }

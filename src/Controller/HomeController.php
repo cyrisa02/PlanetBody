@@ -17,7 +17,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
  */
 class HomeController extends AbstractController
 {
-     #[Route('/', name: 'home.index')]
+     #[Route('/', name: 'home_index')]
      public function index( PartnerRepository $partnerRepository): Response
      {
          return $this->render('pages/home.html.twig', [

@@ -19,7 +19,7 @@ class SitemapController extends AbstractController
         $urls= [];
         // J'envoie les URL dans ce tableau, on va pousser les données
         // balise loc
-        $urls[] = ['loc' => $this->generateUrl('home.index')];
+        $urls[] = ['loc' => $this->generateUrl('home_index')];
         $urls[] = ['loc' => $this->generateUrl('cvg')];
         $urls[] = ['loc' => $this->generateUrl('rgpd')];
         $urls[] = ['loc' => $this->generateUrl('app_claim')];

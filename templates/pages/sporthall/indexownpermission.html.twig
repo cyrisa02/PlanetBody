@@ -1,0 +1,74 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des structures
+{% endblock %}
+
+{% block body %}
+	<div class="container mt-4">
+		<h1>Liste des salles de sport</h1>
+
+		<table class="table">
+			<thead>
+				<tr>
+					<th>Id</th>
+					<th>Société</th>
+					<th>Ville</th>
+					<th>Contact</th>
+					<th>Options</th>
+					<th>Gestion Options</th>
+					<th>Statut Structure</th>
+					<th>Actions Structure</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for sporthall in sporthalls %}
+					{% if sporthall.partners.user.name == app.user.partners.user.name %}
+
+						<tr>
+							<td>{{ sporthall.id }}</td>
+							<td>{{ sporthall.user.name }}</td>
+							<td>{{ sporthall.user.city }}</td>
+							<td>{{ sporthall.user.contact }}</td>
+							<td>
+								{% for permission in sporthall.permissions %}
+
+									{{ permission.name }}
+									-
+									<b>(
+										{{ permission.isEnable ? 'Active' : 'Désactivée' }}
+										)</b>
+									- /
+
+
+								{% endfor %}
+							</td>
+							<td>
+
+								<a href="{{ path('app_sporthallpermission_edit', {'id': sporthall.id}) }}">Activer/Désactiver</a>
+							</td>
+
+
+							<td>{{ sporthall.isEnable ? 'Activé' : 'Désactivé' }}</td>
+							<td>
+								{# <a href="{{ path('app_sporthall_show', {'id': sporthall.id}) }}">show</a> #}
+								<a href="{{ path('app_sporthall_edit', {'id': sporthall.id}) }}">Activer/Désactiver</a>
+							</td>
+						</tr>
+					{% endif %}
+
+				{% else %}
+					<tr>
+						<td colspan="4">Pas d'enregistrement</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+
+		{# <a href="{{ path('app_sporthall_new') }}">Create new</a> #}
+		<div class="navigation d-flex justify-content-center mt-4">
+			{{ knp_pagination_render(sporthalls) }}
+		</div>
+
+	</div>
+
+{% endblock %}

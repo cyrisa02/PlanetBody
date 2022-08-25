@@ -30,7 +30,8 @@ class LoginTest extends WebTestCase
 
         $client->followRedirect();
 
-        $this->assertRouteSame('home.index');
+        $this->assertResponseIsSuccessful();
+        $this->assertSelectorTextContains('h1', 'PlanetBody');
     }
 
     //Mauvais mot de passe

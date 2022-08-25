@@ -20,11 +20,11 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
  * This Controller allows to show his Sporthalls for one logged Partner 
  */
 
-#[Route('/mes_structures')]
-class SporthallownController extends AbstractController
+#[Route('/mes_structures_permissions')]
+class SporthallownPermissionController extends AbstractController
 {
      #[IsGranted('ROLE_USER')]
-    #[Route('/', name: 'app_ownsporthall_index', methods: ['GET'])]
+    #[Route('/', name: 'app_ownsporthall_permission_index', methods: ['GET'])]
     public function index(SporthallRepository $sporthallRepository, UserRepository $userRepository, PaginatorInterface $paginator, Request $request, PartnerRepository $partnerRepository): Response
     {
 
@@ -36,7 +36,7 @@ class SporthallownController extends AbstractController
             $request->query->getInt('page', 1),
             9
         );
-        return $this->render('pages/sporthall/ownindex.html.twig', [
+        return $this->render('pages/sporthall/indexownpermission.html.twig', [
             'sporthalls' => $sporthalls,
             'users' => $userRepository->findAll(),
             'partners' => $partnerRepository->findAll(),
