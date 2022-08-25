@@ -49,7 +49,10 @@ class SporthallController extends AbstractController
 
             return $this->redirectToRoute('app_sporthall_index', [], Response::HTTP_SEE_OTHER);
         }
-
+        $this->addFlash(
+                'success',
+                'Votre demande a été supprimée avec succès'
+            );
         return $this->renderForm('pages/sporthall/new.html.twig', [
             'sporthall' => $sporthall,
             'form' => $form,
