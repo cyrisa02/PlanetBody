@@ -4,12 +4,17 @@
 {% endblock %}
 
 {% block body %}
-	<h1>Inscpription envoyé par mail pour les Franchisés</h1>
-
+	<h1>Inscpription envoyé par mail aux Franchisés</h1>
+	<h2>Vous avez reçu notre message de confirmation d'inscription.</h2>
+	<h3>Merci de remplir ce formulaire et de bien renseigner votre type de contrat suivi du nom de votre société.</h3>
 	{{ form_start(registrationForm) }}
 
 	{{ form_row(registrationForm.name) }}
 	{{ form_row(registrationForm.contact) }}
+	<p class="mt-4">Merci de renseigner votre type de contrat suivi du nom de votre société.</p>
+
+	{{ form_row(registrationForm.contract) }}
+
 
 	{{ form_row(registrationForm.address) }}
 	{{ form_row(registrationForm.zipcode) }}

@@ -13,15 +13,13 @@ class Partner
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
-    private ?int $id = null;
-
-    
+    private ?int $id = null;   
 
     #[ORM\Column(length: 190)]
     private ?string $contract = null;
 
-    
-    
+    #[ORM\Column]
+    private ?bool $isEnable = false;   
     
     
     #[ORM\ManyToMany(targetEntity: Permission::class, inversedBy: 'partners')]
@@ -36,8 +34,7 @@ class Partner
     #[ORM\OneToMany(mappedBy: 'partners', targetEntity: Sporthall::class)]
     private Collection $sporthalls;
 
-    #[ORM\Column]
-    private ?bool $isEnable = false;
+  
 
     
 

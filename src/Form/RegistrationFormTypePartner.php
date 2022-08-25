@@ -102,7 +102,20 @@ class RegistrationFormTypePartner extends AbstractType
 
             // ])
              ->add('contract', TextType::class, [
-                'mapped' => false,                
+                'mapped' => false, 
+                           'label' => 'Type de contrat - Nom du franchisé',
+                                                  
+                          
+                'label_attr' => [
+                    'class' => 'form-label  mt-4'
+                ],  
+                'attr' => [
+                    'class' => 'form-control',
+                    'minlenght' => '2',
+                    'maxlenght' => '190',
+                ],  
+                 
+
              ])
             ->add('agreeTerms', CheckboxType::class, [
                 'mapped' => false,

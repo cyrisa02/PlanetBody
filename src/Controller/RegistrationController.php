@@ -56,6 +56,11 @@ class RegistrationController extends AbstractController
             $entityManager->flush();
             // do anything else you need here, like send an email
 
+            $this->addFlash(
+                'success',
+                'Votre demande a été enregistrée avec succès'
+            );
+
             return $userAuthenticator->authenticateUser(
                 $user,
                 $authenticator,
@@ -99,6 +104,11 @@ class RegistrationController extends AbstractController
             $entityManager->persist($user);
             $entityManager->flush();
             // do anything else you need here, like send an email
+
+            $this->addFlash(
+                'success',
+                'Votre demande a été enregistrée avec succès'
+            );
 
             return $userAuthenticator->authenticateUser(
                 $user,
