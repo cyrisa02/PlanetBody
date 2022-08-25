@@ -23,8 +23,10 @@
 
 
 		{% endblock %}
+		<link rel="stylesheet" href="{{ asset('assets/css/styles2.css') }}">
 		<link
-		rel="stylesheet" href="{{ asset('assets/css/styles2.css') }}">
+		rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css"/>
+
 
 		<!-- Fichiers JS -->
 		<script src="{{ asset('assets/js/bootstrap.bundle.min.js') }}" defer></script>
@@ -53,5 +55,10 @@
 			{% block body %}{% endblock %}
 
 			{% include "partials/_footer.html.twig" %}</body>
+		<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+		<script>
+			AOS.init();
+		</script>
+
 	</body>
 </html>

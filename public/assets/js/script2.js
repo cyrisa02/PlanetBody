@@ -1,3 +1,5 @@
+//Search Bar to seek a or many partners 
+
 const userCardTemplate = document.querySelector("[data-user-template]")
 const userCardContainer = document.querySelector("[data-user-cards-container]")
 const searchInput = document.querySelector("[data-search]")
@@ -31,7 +33,7 @@ searchInput.addEventListener("input", e => {
 
 
 
-
+// Filter disable /Enable Partner
 
 const showEnable = () =>{
     let partners = document.getElementsByClassName("partner");
@@ -46,7 +48,6 @@ const showEnable = () =>{
         }
     }
 }
-
 const showDisable = () =>{
     let partners = document.getElementsByClassName("partner");
     
@@ -60,7 +61,6 @@ const showDisable = () =>{
         }
     }
 }
-
 const showAll = () =>{
     let partners = document.getElementsByClassName("partner");
     
