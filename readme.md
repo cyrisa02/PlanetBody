@@ -88,3 +88,7 @@ INSERT INTO `user` VALUES (15,'cyrisa02.test@gmail.com','[\"ROLE_ADMIN\"]','$2y$
 	<p>structuredesactive@gmail.com</p>
 	<p>code: azerty</p>
 
+## Vidéos du mode d'emploi du site
+
+https://www.youtube.com/watch?v=S1Mza2LusWo&list=PLQtcbnWnIXZuUKaq-wDvJqSiodHYqKt6b
+

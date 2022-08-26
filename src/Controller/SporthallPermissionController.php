@@ -73,7 +73,7 @@ class SporthallPermissionController extends AbstractController
                 'Votre demande a été enregistrée avec succès!'
             );
 
-            return $this->redirectToRoute('app_sporthallpermission_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('home_index', [], Response::HTTP_SEE_OTHER);
         }
 
         

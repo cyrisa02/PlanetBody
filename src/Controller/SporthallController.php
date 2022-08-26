@@ -96,7 +96,7 @@ class SporthallController extends AbstractController
                 'Votre demande a été enregistrée avec succès'
             );
 
-            return $this->redirectToRoute('app_sporthall_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('home_index', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('pages/sporthall/edit.html.twig', [
