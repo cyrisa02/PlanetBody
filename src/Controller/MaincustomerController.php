@@ -10,6 +10,11 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
+
+/**
+ * This controller manages the CRUD for the main Customer. Now it is not necessary because there is only one Amdin. In the future we can think we can create many Role Admin. So this controller will be necessary.
+ */
+
 #[Route('/client')]
 class MaincustomerController extends AbstractController
 {

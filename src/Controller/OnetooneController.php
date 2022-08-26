@@ -13,6 +13,9 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
+/**
+ * Not used. I keep it for me.
+ */
 
 class OnetooneController extends AbstractController
 {

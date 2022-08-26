@@ -18,6 +18,10 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
+/**
+ * This controller allows to see the partner with his permissions
+ */
+
 
 #[Route('/franchise_permission')]
 class PartnerPermissionController extends AbstractController

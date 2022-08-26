@@ -18,6 +18,10 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
+/**
+ * This controller manages the mailing for the newsletters for example
+ */
+
 #[Route('/mailing')]
 class MailingController extends AbstractController
 {

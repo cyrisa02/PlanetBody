@@ -18,6 +18,10 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Security\Http\Authentication\UserAuthenticatorInterface;
 
+/**
+ * This controller manages the registration for the partners 
+ */
+
 class RegistrationController extends AbstractController
 {
     #[Route('/inscription_partner', name: 'app_register_partner')]
@@ -72,6 +76,10 @@ class RegistrationController extends AbstractController
             'registrationForm' => $form->createView(),
         ]);
     }
+    
+/**
+ * This controller manages the registration for the sporthalls
+ */
 
          #[Route('/inscription_sporthall', name: 'app_register_sporthall')]
     public function register2(Request $request, UserPasswordHasherInterface $userPasswordHasher, UserAuthenticatorInterface $userAuthenticator, UserAuthenticator $authenticator, EntityManagerInterface $entityManager): Response

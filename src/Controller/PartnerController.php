@@ -16,6 +16,10 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
+/**
+ * This controller manages the CRUD by the partners.
+ */
+
 #[Route('/franchise')]
 class PartnerController extends AbstractController
 {

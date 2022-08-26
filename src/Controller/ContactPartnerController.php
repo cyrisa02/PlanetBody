@@ -15,7 +15,9 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 
-
+/**
+ * This controller allows to create the first contact between the futur partner and the main customer. The partner is filling out the form. After check, the main customer can valid the futur partner. The partner is receiving a mail for his registration
+ */
 
 class ContactPartnerController extends AbstractController
 {

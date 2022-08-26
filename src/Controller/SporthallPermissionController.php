@@ -18,6 +18,10 @@ use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
+/**
+ * The Controller allows to display the permisions for a sporthall
+ */
+
 #[Route('/structure_permission')]
 class SporthallPermissionController extends AbstractController
 {

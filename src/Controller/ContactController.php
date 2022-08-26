@@ -14,6 +14,10 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
+/**
+ * This controller allows to manage the first contact between the futur partner and the main customer. After check, the main customer can valid the futur partner. The partner is receiving a mail for his registration
+ */
+
 #[Route('/preinscription')]
 class ContactController extends AbstractController
 {

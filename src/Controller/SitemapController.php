@@ -7,6 +7,10 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
+/**
+ * This Controller create the Sitemap for the SEO
+ */
+
 class SitemapController extends AbstractController
 {
     #[Route('/sitemap.xml', name: 'app_sitemap', defaults: ['_format'=>'xml'])]   

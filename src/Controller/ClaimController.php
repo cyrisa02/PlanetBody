@@ -14,6 +14,10 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
+/**
+ * This controller allows to send a claim od to ask some informations
+ */
+
 class ClaimController extends AbstractController
 {
     #[Route('/demande_info', name: 'app_claim')]
